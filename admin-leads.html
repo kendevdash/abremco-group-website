@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="images/logo/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/logo/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/logo/favicon-180.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABREMCO — Contact Leads Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --pur:#0D0120; --pur-dark:#1A0533; --pur-mid:#2D0A56; --pur-card:#3D0F78;
+            --gld:#D4A72E; --gld-light:#F0C84A; --gld-dark:#B8891A;
+            --white:#fff; --muted:rgba(255,255,255,0.5);
+        }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+        html{scroll-behavior:smooth;}
+        body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--pur);color:var(--white);min-height:100vh;}
+
+        /* ── LOGIN GATE ── */
+        .login-wrap{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px;}
+        .login-card{background:rgba(26,5,51,0.9);border:1px solid rgba(212,167,46,0.3);border-radius:20px;padding:44px 38px;width:100%;max-width:400px;text-align:center;backdrop-filter:blur(20px);position:relative;overflow:hidden;}
+        .login-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gld-dark),var(--gld),var(--gld-light));}
+        .login-logo{height:40px;margin-bottom:24px;}
+        .login-card h2{font-size:1.3rem;font-weight:800;color:var(--white);margin-bottom:6px;}
+        .login-card p{font-size:0.82rem;color:var(--muted);margin-bottom:28px;}
+        .login-input{width:100%;padding:13px 16px;border-radius:9px;background:rgba(13,1,32,0.7);border:1px solid rgba(139,92,246,0.3);color:var(--white);font-size:0.9rem;font-family:inherit;outline:none;text-align:center;letter-spacing:4px;transition:border-color 0.3s;}
+        .login-input:focus{border-color:rgba(212,167,46,0.55);}
+        .login-btn{width:100%;margin-top:14px;padding:13px;background:linear-gradient(90deg,var(--gld-dark),var(--gld),var(--gld-light));background-size:200% auto;color:var(--pur);font-weight:800;font-size:0.9rem;border:none;border-radius:9px;cursor:pointer;font-family:inherit;transition:all 0.35s;box-shadow:0 6px 22px rgba(212,167,46,0.35);}
+        .login-btn:hover{background-position:right center;transform:translateY(-2px);}
+        .login-err{margin-top:12px;font-size:0.78rem;color:#FCA5A5;display:none;}
+
+        /* ── DASHBOARD ── */
+        .dashboard{display:none;min-height:100vh;}
+
+        /* Top bar */
+        .top-bar{background:rgba(26,5,51,0.98);border-bottom:1px solid rgba(212,167,46,0.2);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;backdrop-filter:blur(20px);}
+        .top-bar-left{display:flex;align-items:center;gap:16px;}
+        .top-bar img{height:34px;}
+        .top-bar-title{font-size:0.82rem;font-weight:700;color:var(--muted);border-left:1px solid rgba(255,255,255,0.1);padding-left:16px;}
+        .top-bar-right{display:flex;align-items:center;gap:10px;}
+        .btn-action{display:inline-flex;align-items:center;gap:7px;padding:8px 18px;border-radius:6px;font-size:0.8rem;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.25s;border:none;}
+        .btn-export{background:rgba(212,167,46,0.12);border:1px solid rgba(212,167,46,0.35);color:var(--gld);}
+        .btn-export:hover{background:rgba(212,167,46,0.22);}
+        .btn-clear{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#FCA5A5;}
+        .btn-clear:hover{background:rgba(239,68,68,0.2);}
+        .btn-logout{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:var(--muted);}
+        .btn-logout:hover{color:var(--white);}
+
+        /* Stats row */
+        .stats-row{max-width:1200px;margin:28px auto 0;padding:0 32px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+        .stat-card{background:rgba(26,5,51,0.8);border:1px solid rgba(139,92,246,0.22);border-radius:14px;padding:22px 20px;text-align:center;}
+        .stat-card-num{font-size:2rem;font-weight:900;background:linear-gradient(90deg,var(--gld),var(--gld-light));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:6px;}
+        .stat-card-lbl{font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;font-weight:600;}
+
+        /* Table section */
+        .table-wrap{max-width:1200px;margin:24px auto 40px;padding:0 32px;}
+        .table-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+        .table-header h3{font-size:1rem;font-weight:800;color:var(--white);}
+        .search-input{padding:9px 14px;border-radius:8px;background:rgba(255,255,255,0.05);border:1px solid rgba(139,92,246,0.25);color:var(--white);font-size:0.82rem;font-family:inherit;outline:none;width:220px;transition:border-color 0.3s;}
+        .search-input::placeholder{color:rgba(255,255,255,0.28);}
+        .search-input:focus{border-color:rgba(212,167,46,0.45);}
+        table{width:100%;border-collapse:collapse;border-radius:14px;overflow:hidden;}
+        thead{background:var(--pur-card);}
+        thead th{padding:14px 18px;text-align:left;color:var(--gld);font-weight:800;font-size:0.8rem;letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid rgba(212,167,46,0.2);}
+        tbody tr{border-bottom:1px solid rgba(139,92,246,0.15);transition:background 0.2s;}
+        tbody tr:hover{background:rgba(61,15,120,0.35);}
+        tbody td{padding:14px 18px;font-size:0.86rem;color:var(--muted);}
+        tbody td:first-child{color:rgba(255,255,255,0.35);font-size:0.76rem;}
+        tbody td.td-name{color:var(--white);font-weight:600;}
+        tbody td.td-email{color:var(--gld);font-weight:500;}
+        .badge-source{display:inline-flex;align-items:center;gap:5px;background:rgba(212,167,46,0.1);border:1px solid rgba(212,167,46,0.25);color:rgba(212,167,46,0.8);padding:3px 10px;border-radius:20px;font-size:0.7rem;font-weight:600;}
+        .empty-state{text-align:center;padding:60px 20px;}
+        .empty-state i{font-size:2.5rem;color:rgba(212,167,46,0.25);margin-bottom:14px;display:block;}
+        .empty-state p{color:var(--muted);font-size:0.9rem;}
+
+        @media(max-width:768px){.stats-row{grid-template-columns:1fr 1fr;}.table-wrap{padding:0 16px;}.top-bar{padding:12px 16px;}.stats-row{padding:0 16px;}}
+    </style>
+</head>
+<body>
+
+<!-- ── LOGIN GATE ── -->
+<div class="login-wrap" id="loginWrap">
+    <div class="login-card">
+        <img src="images/logo/abremco_logo.png" alt="ABREMCO GROUP" class="login-logo">
+        <h2>Admin Dashboard</h2>
+        <p>Enter your access PIN to view contact leads</p>
+        <input type="password" class="login-input" id="pinInput" placeholder="• • • • • •" maxlength="20"
+               onkeydown="if(event.key==='Enter') checkPin()">
+        <button class="login-btn" onclick="checkPin()"><i class="fas fa-unlock"></i> Access Dashboard</button>
+        <p class="login-err" id="loginErr"><i class="fas fa-times-circle"></i> Incorrect PIN. Please try again.</p>
+    </div>
+</div>
+
+<!-- ── DASHBOARD ── -->
+<div class="dashboard" id="dashboard">
+
+    <!-- Top bar -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <img src="images/logo/abremco_logo.png" alt="ABREMCO GROUP">
+            <span class="top-bar-title">Contact Leads</span>
+        </div>
+        <div class="top-bar-right">
+            <button class="btn-action btn-export" onclick="exportCSV()"><i class="fas fa-download"></i> Export CSV</button>
+            <button class="btn-action btn-clear" onclick="clearLeads()"><i class="fas fa-trash"></i> Clear All</button>
+            <button class="btn-action btn-logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row" id="statsRow">
+        <div class="stat-card"><div class="stat-card-num" id="statTotal">0</div><div class="stat-card-lbl">Total Leads</div></div>
+        <div class="stat-card"><div class="stat-card-num" id="statToday">0</div><div class="stat-card-lbl">Today</div></div>
+        <div class="stat-card"><div class="stat-card-num" id="statWeek">0</div><div class="stat-card-lbl">This Week</div></div>
+        <div class="stat-card"><div class="stat-card-num" id="statWidget">0</div><div class="stat-card-lbl">From Widget</div></div>
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrap">
+        <div class="table-header">
+            <h3><i class="fas fa-users" style="color:var(--gld);margin-right:8px;"></i> All Leads</h3>
+            <input type="text" class="search-input" id="searchInput" placeholder="Search by name or email…" oninput="filterTable()">
+        </div>
+
+        <div id="tableContainer"></div>
+    </div>
+
+</div>
+
+<script>
+    const ADMIN_PIN = 'ABREMCO2025';
+
+    function checkPin() {
+        const pin = document.getElementById('pinInput').value.trim();
+        const err = document.getElementById('loginErr');
+        if (pin === ADMIN_PIN) {
+            document.getElementById('loginWrap').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
+            loadLeads();
+            err.style.display = 'none';
+        } else {
+            err.style.display = 'block';
+            document.getElementById('pinInput').style.borderColor = 'rgba(239,68,68,0.6)';
+            setTimeout(() => {
+                document.getElementById('pinInput').style.borderColor = '';
+            }, 1500);
+        }
+    }
+
+    function logout() {
+        document.getElementById('dashboard').style.display = 'none';
+        document.getElementById('loginWrap').style.display = 'flex';
+        document.getElementById('pinInput').value = '';
+    }
+
+    function getLeads() {
+        try { return JSON.parse(localStorage.getItem('abremco_leads') || '[]'); }
+        catch(e) { return []; }
+    }
+
+    let allLeads = [];
+
+    function loadLeads() {
+        allLeads = getLeads();
+        updateStats(allLeads);
+        renderTable(allLeads);
+    }
+
+    function updateStats(leads) {
+        const today = new Date().toLocaleDateString('en-GB');
+        const now = new Date();
+        const weekAgo = new Date(now.getTime() - 7*24*60*60*1000);
+
+        document.getElementById('statTotal').textContent = leads.length;
+        document.getElementById('statToday').textContent = leads.filter(l => l.date === today).length;
+        document.getElementById('statWeek').textContent = leads.filter(l => {
+            const [d,m,y] = (l.date || '').split('/');
+            const lDate = new Date(y, m-1, d);
+            return lDate >= weekAgo;
+        }).length;
+        document.getElementById('statWidget').textContent = leads.filter(l => l.source === 'Support Widget').length;
+    }
+
+    function renderTable(leads) {
+        const container = document.getElementById('tableContainer');
+        if (!leads.length) {
+            container.innerHTML = `<div class="empty-state"><i class="fas fa-inbox"></i><p>No leads collected yet.<br>They will appear here once users submit their email.</p></div>`;
+            return;
+        }
+        let rows = leads.map((l, i) => `
+            <tr>
+                <td>${leads.length - i}</td>
+                <td class="td-name">${escHtml(l.name)}</td>
+                <td class="td-email"><a href="mailto:${escHtml(l.email)}" style="color:var(--gld);text-decoration:none;">${escHtml(l.email)}</a></td>
+                <td>${escHtml(l.phone)}</td>
+                <td>${escHtml(l.date)} &nbsp;${escHtml(l.time)}</td>
+                <td><span class="badge-source"><i class="fas fa-headset"></i> ${escHtml(l.source)}</span></td>
+            </tr>`).join('');
+        container.innerHTML = `
+            <table>
+                <thead><tr>
+                    <th>#</th><th>Name</th><th>Email</th><th>Phone</th><th>Date &amp; Time</th><th>Source</th>
+                </tr></thead>
+                <tbody>${rows}</tbody>
+            </table>`;
+    }
+
+    function filterTable() {
+        const q = document.getElementById('searchInput').value.toLowerCase();
+        const filtered = allLeads.filter(l =>
+            (l.name||'').toLowerCase().includes(q) ||
+            (l.email||'').toLowerCase().includes(q) ||
+            (l.phone||'').toLowerCase().includes(q)
+        );
+        renderTable(filtered);
+    }
+
+    function escHtml(str) {
+        return (str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function exportCSV() {
+        const leads = getLeads();
+        if (!leads.length) { alert('No leads to export yet.'); return; }
+        const header = ['#','Name','Email','Phone','Date','Time','Source'];
+        const rows = leads.map((l,i) => [leads.length-i, l.name, l.email, l.phone, l.date, l.time, l.source]);
+        const csv = [header, ...rows].map(r => r.map(c => `"${(c||'').toString().replace(/"/g,'""')}"`).join(',')).join('\n');
+        const blob = new Blob([csv], {type:'text/csv'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a'); a.href = url;
+        a.download = `abremco-leads-${new Date().toISOString().slice(0,10)}.csv`;
+        a.click(); URL.revokeObjectURL(url);
+    }
+
+    function clearLeads() {
+        if (!confirm('Are you sure you want to delete ALL leads? This cannot be undone.')) return;
+        localStorage.removeItem('abremco_leads');
+        allLeads = [];
+        updateStats([]);
+        renderTable([]);
+    }
+
+    // Allow Enter key on PIN input
+    document.getElementById('pinInput').addEventListener('keydown', e => {
+        if (e.key === 'Enter') checkPin();
+    });
+</script>
+</body>
+</html>

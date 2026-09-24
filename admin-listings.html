@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="images/logo/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/logo/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/logo/favicon-180.png">
+<meta name="theme-color" content="#0D0120">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listings Manager | ABREMCO Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --pur-deep:  #0D0120;
+            --pur-dark:  #1A0533;
+            --pur-mid:   #2D0A56;
+            --pur-card:  #3D0F78;
+            --pur-main:  #6B21C8;
+            --pur-light: #8B5CF6;
+            --gld:       #D4A72E;
+            --gld-light: #F0C84A;
+            --white:     #FFFFFF;
+            --muted:     rgba(255,255,255,0.52);
+            --off-white: rgba(255,255,255,0.85);
+            --border-pur:rgba(139,92,246,0.22);
+            --border-gld:rgba(212,167,46,0.22);
+            --green:     #22c55e;
+            --red:       #ef4444;
+            --sidebar-w: 260px;
+        }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--pur-deep);color:var(--white);line-height:1.6;overflow-x:hidden;}
+        a{text-decoration:none;color:inherit;}
+        ::-webkit-scrollbar{width:5px;}
+        ::-webkit-scrollbar-track{background:var(--pur-deep);}
+        ::-webkit-scrollbar-thumb{background:var(--gld);border-radius:3px;}
+
+        /* ══ LAYOUT ══ */
+        .sidebar{
+            position:fixed;top:0;left:0;height:100vh;width:var(--sidebar-w);
+            background:var(--pur-dark);border-right:1px solid var(--border-pur);
+            display:flex;flex-direction:column;z-index:100;
+            transition:transform 0.3s ease;
+        }
+        .sidebar-logo{
+            padding:20px 24px;border-bottom:1px solid var(--border-pur);
+            display:flex;flex-direction:column;align-items:flex-start;gap:8px;
+        }
+        .sidebar-logo img{width:100%;max-width:180px;height:auto;filter:brightness(1.1);}
+        .sn{font-size:0.88rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;}
+        .st{font-size:0.60rem;color:var(--gld);letter-spacing:3px;text-transform:uppercase;}
+        .sidebar-nav{flex:1;padding:20px 0;overflow-y:auto;}
+        .nav-section-title{font-size:0.60rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);padding:12px 24px 6px;}
+        .nav-item{
+            display:flex;align-items:center;gap:12px;padding:11px 24px;
+            color:rgba(255,255,255,0.65);font-size:0.82rem;font-weight:500;cursor:pointer;
+            transition:color 0.2s,background 0.2s;border-left:2px solid transparent;
+        }
+        .nav-item i{width:18px;font-size:0.90rem;}
+        .nav-item:hover{color:#FFFFFF;background:rgba(255,255,255,0.04);}
+        .nav-item.active{color:var(--gld);border-left-color:var(--gld);background:rgba(212,167,46,0.07);}
+        .sidebar-footer{padding:18px 24px;border-top:1px solid var(--border-pur);}
+        .sidebar-user{display:flex;align-items:center;gap:12px;}
+        .sidebar-avatar{width:36px;height:36px;border-radius:50%;background:var(--pur-main);display:flex;align-items:center;justify-content:center;font-size:0.88rem;font-weight:700;flex-shrink:0;}
+        .su-name{font-size:0.82rem;font-weight:700;}
+        .su-role{font-size:0.68rem;color:var(--gld);letter-spacing:1px;}
+        .sidebar-logout{margin-left:auto;background:none;border:none;color:var(--muted);cursor:pointer;font-size:0.88rem;transition:color 0.2s;}
+        .sidebar-logout:hover{color:var(--red);}
+
+        .main{margin-left:var(--sidebar-w);min-height:100vh;display:flex;flex-direction:column;}
+        .topbar{
+            background:var(--pur-dark);border-bottom:1px solid var(--border-pur);
+            padding:16px 32px;display:flex;align-items:center;gap:16px;
+            justify-content:space-between;position:sticky;top:0;z-index:50;
+        }
+        .topbar-left{display:flex;align-items:center;min-width:0;}
+        .topbar-left-text{min-width:0;}
+        .topbar-title{font-size:1.1rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+        .topbar-sub{font-size:0.76rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+        .topbar-actions{display:flex;gap:10px;flex-shrink:0;}
+        .content{padding:28px 32px;flex:1;}
+        .menu-toggle{display:none;background:none;border:none;color:#FFFFFF;font-size:1.2rem;cursor:pointer;margin-right:12px;}
+
+        /* ══ TABS ══ */
+        .tab-bar{
+            display:flex;gap:2px;background:var(--pur-dark);
+            border:1px solid var(--border-pur);border-radius:3px;
+            padding:6px;margin-bottom:28px;flex-wrap:wrap;
+        }
+        .tab-btn{
+            flex:1;min-width:140px;padding:10px 18px;border:none;background:transparent;
+            color:var(--muted);font-size:0.78rem;font-weight:600;letter-spacing:1px;
+            text-transform:uppercase;border-radius:2px;cursor:pointer;
+            display:flex;align-items:center;justify-content:center;gap:8px;
+            transition:background 0.2s,color 0.2s;font-family:inherit;
+        }
+        .tab-btn.active{background:var(--gld);color:var(--pur-deep);}
+        .tab-btn:hover:not(.active){background:rgba(255,255,255,0.05);color:#FFFFFF;}
+        .tab-content{display:none;}
+        .tab-content.active{display:block;}
+
+        /* ══ PANEL ══ */
+        .panel{background:var(--pur-dark);border:1px solid var(--border-pur);border-radius:3px;margin-bottom:22px;}
+        .panel-header{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--border-pur);}
+        .panel-title{font-size:0.88rem;font-weight:700;}
+
+        /* ══ FORM ══ */
+        .add-form{padding:22px;}
+        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+        .form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+        .form-group{margin-bottom:18px;}
+        .form-group label{display:block;font-size:0.74rem;font-weight:600;letter-spacing:0.5px;color:rgba(255,255,255,0.60);margin-bottom:7px;}
+        .form-control{
+            width:100%;padding:11px 14px;background:rgba(61,15,120,0.30);
+            border:1px solid var(--border-pur);border-radius:2px;
+            color:#FFFFFF;font-size:0.88rem;font-family:inherit;
+            transition:border-color 0.25s;
+        }
+        .form-control:focus{outline:none;border-color:var(--gld);}
+        .form-control::placeholder{color:rgba(255,255,255,0.25);}
+        select.form-control option{background:var(--pur-dark);}
+        textarea.form-control{min-height:90px;resize:vertical;}
+        .form-hint{font-size:0.70rem;color:var(--muted);margin-top:5px;}
+        .btn-add{
+            display:inline-flex;align-items:center;gap:8px;
+            background:var(--gld);color:var(--pur-deep);
+            border:none;border-radius:2px;padding:11px 26px;
+            font-weight:700;font-size:0.80rem;letter-spacing:1.5px;text-transform:uppercase;
+            cursor:pointer;transition:background 0.25s;font-family:inherit;
+        }
+        .btn-add:hover{background:var(--gld-light);}
+        .btn-sm{
+            padding:6px 14px;font-size:0.72rem;border:none;border-radius:2px;
+            cursor:pointer;font-weight:600;font-family:inherit;
+            display:inline-flex;align-items:center;gap:6px;
+        }
+        .btn-danger{background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.30);color:#fca5a5;}
+        .btn-danger:hover{background:rgba(239,68,68,0.22);}
+        .btn-success{background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.25);color:var(--green);}
+
+        /* ══ ITEMS LIST ══ */
+        .items-grid{padding:22px;display:flex;flex-direction:column;gap:12px;}
+        .item-card{
+            background:var(--pur-mid);border:1px solid var(--border-pur);
+            border-radius:2px;padding:16px 18px;
+            display:flex;align-items:flex-start;gap:16px;
+            transition:border-color 0.3s;
+        }
+        .item-card:hover{border-color:var(--border-gld);}
+        .item-thumb{
+            width:80px;height:56px;border-radius:2px;overflow:hidden;
+            flex-shrink:0;background:var(--pur-card);border:1px solid var(--border-pur);
+        }
+        .item-thumb img{width:100%;height:100%;object-fit:cover;}
+        .item-thumb-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:1.2rem;}
+        .item-body{flex:1;min-width:0;}
+        .item-title{font-size:0.90rem;font-weight:700;color:#FFFFFF;margin-bottom:4px;}
+        .item-meta{font-size:0.74rem;color:var(--muted);margin-bottom:6px;}
+        .item-desc{font-size:0.82rem;color:var(--off-white);line-height:1.55;}
+        .item-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
+        .item-badge{
+            font-size:0.60rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+            padding:3px 10px;border-radius:20px;display:inline-block;
+        }
+        .badge-green{background:rgba(34,197,94,0.12);color:var(--green);border:1px solid rgba(34,197,94,0.25);}
+        .badge-gold{background:rgba(212,167,46,0.12);color:var(--gld);border:1px solid var(--border-gld);}
+        .badge-blue{background:rgba(59,130,246,0.12);color:#60a5fa;border:1px solid rgba(59,130,246,0.25);}
+        .badge-purple{background:rgba(139,92,246,0.12);color:var(--pur-light);border:1px solid var(--border-pur);}
+        .empty-state{
+            padding:48px 22px;text-align:center;
+            color:var(--muted);font-size:0.88rem;
+        }
+        .empty-state i{font-size:2.5rem;color:var(--border-gld);display:block;margin-bottom:12px;}
+
+        /* ══ PHOTO GRID ══ */
+        .photos-grid{
+            display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+            gap:16px;padding:22px;
+        }
+        .photo-card{
+            background:var(--pur-mid);border:1px solid var(--border-pur);
+            border-radius:2px;overflow:hidden;
+            transition:border-color 0.3s,transform 0.25s;
+        }
+        .photo-card:hover{border-color:var(--border-gld);transform:translateY(-2px);}
+        .photo-img{width:100%;height:140px;object-fit:cover;display:block;}
+        .photo-img-placeholder{width:100%;height:140px;background:var(--pur-card);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:2rem;}
+        .photo-footer{padding:12px 14px;}
+        .photo-caption{font-size:0.80rem;font-weight:600;color:var(--off-white);margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+        .photo-date{font-size:0.68rem;color:var(--muted);}
+        .photo-actions{display:flex;gap:6px;margin-top:10px;}
+
+        /* ══ LISTINGS GRID ══ */
+        .listing-card{
+            background:var(--pur-mid);border:1px solid var(--border-pur);
+            border-radius:2px;padding:18px;display:grid;
+            grid-template-columns:100px 1fr auto;gap:16px;align-items:start;
+            transition:border-color 0.3s;
+        }
+        .listing-card:hover{border-color:var(--border-gld);}
+        .listing-img{width:100px;height:70px;border-radius:2px;overflow:hidden;flex-shrink:0;}
+        .listing-img img{width:100%;height:100%;object-fit:cover;}
+        .listing-price{font-size:1.2rem;font-weight:800;color:var(--gld);}
+        .listing-type{font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+        .listing-title{font-size:0.96rem;font-weight:700;color:#FFFFFF;margin-bottom:4px;}
+        .listing-desc{font-size:0.80rem;color:var(--muted);line-height:1.5;}
+        .listing-actions{display:flex;flex-direction:column;gap:8px;}
+
+        /* ══ TOAST ══ */
+        .toast{
+            position:fixed;bottom:28px;right:28px;z-index:9999;
+            background:var(--pur-dark);border:1px solid var(--border-gld);
+            color:var(--gld);padding:14px 22px;border-radius:3px;
+            font-size:0.85rem;font-weight:600;
+            display:flex;align-items:center;gap:10px;
+            transform:translateY(80px);opacity:0;
+            transition:transform 0.35s,opacity 0.35s;
+            pointer-events:none;max-width:320px;
+        }
+        .toast.show{transform:translateY(0);opacity:1;}
+
+        /* Inline img preview */
+        .img-preview{
+            width:100%;max-height:180px;object-fit:cover;border-radius:2px;
+            margin-top:10px;display:none;border:1px solid var(--border-gld);
+        }
+
+        /* ══ RESPONSIVE ══ */
+        @media(max-width:900px){
+            .sidebar{transform:translateX(-100%);}
+            .sidebar.open{transform:translateX(0);}
+            .main{margin-left:0;}
+            .menu-toggle{display:block;}
+            .form-row,.form-row-3{grid-template-columns:1fr;}
+            .listing-card{grid-template-columns:1fr;gap:12px;}
+        }
+        @media(max-width:600px){
+            .content{padding:16px;}
+            .topbar{padding:14px 16px;}
+            .tab-btn{min-width:100px;font-size:0.70rem;}
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <img src="images/logo/abremco_logo.png" alt="ABREMCO GROUP">
+            <div class="st">Listings Manager</div>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-section-title">Manager</div>
+            <div class="nav-item" id="nav-updates" onclick="switchTab('updates')">
+                <i class="fas fa-newspaper"></i> Construction Updates
+            </div>
+            <div class="nav-item" id="nav-photos" onclick="switchTab('photos')">
+                <i class="fas fa-images"></i> Progress Photos
+            </div>
+            <div class="nav-item" id="nav-listings" onclick="switchTab('listings')">
+                <i class="fas fa-building"></i> Property Listings
+            </div>
+            <div class="nav-item" id="nav-inquiries" onclick="switchTab('inquiries')">
+                <i class="fas fa-envelope"></i> Inquiries
+            </div>
+            <div class="nav-section-title">Navigation</div>
+            <div class="nav-item" onclick="window.location.href='admin.html'">
+                <i class="fas fa-th-large"></i> Dashboard
+            </div>
+            <div class="nav-item" onclick="window.open('index.html','_blank')">
+                <i class="fas fa-external-link-alt"></i> View Website
+            </div>
+            <div class="nav-item" onclick="window.open('progress.html','_blank')">
+                <i class="fas fa-hard-hat"></i> Progress Page
+            </div>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="sidebar-user">
+                <div class="sidebar-avatar">A</div>
+                <div>
+                    <div class="su-name">Administrator</div>
+                    <div class="su-role">Super Admin</div>
+                </div>
+                <button class="sidebar-logout" onclick="window.location.href='admin.html'" title="Back to dashboard">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main -->
+    <div class="main">
+        <div class="topbar">
+            <div class="topbar-left">
+                <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')"><i class="fas fa-bars"></i></button>
+                <div class="topbar-left-text">
+                    <div class="topbar-title" id="topbarTitle">Content Manager</div>
+                    <div class="topbar-sub">Add, edit and manage all site content</div>
+                </div>
+            </div>
+            <div class="topbar-actions">
+                <a href="admin.html" class="btn-add" style="text-decoration:none;background:var(--pur-main);color:#fff;">
+                    <i class="fas fa-th-large"></i> Dashboard
+                </a>
+                <button class="btn-add" id="topAddBtn" onclick="scrollToForm()">
+                    <i class="fas fa-plus"></i> Add New
+                </button>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <!-- Tab bar -->
+            <div class="tab-bar">
+                <button class="tab-btn" id="tab-updates" onclick="switchTab('updates')">
+                    <i class="fas fa-newspaper"></i> Updates
+                </button>
+                <button class="tab-btn" id="tab-photos" onclick="switchTab('photos')">
+                    <i class="fas fa-images"></i> Photos
+                </button>
+                <button class="tab-btn" id="tab-listings" onclick="switchTab('listings')">
+                    <i class="fas fa-building"></i> Listings
+                </button>
+                <button class="tab-btn" id="tab-inquiries" onclick="switchTab('inquiries')">
+                    <i class="fas fa-envelope"></i> Inquiries
+                </button>
+            </div>
+
+            <!-- ════ TAB: CONSTRUCTION UPDATES ════ -->
+            <div class="tab-content" id="content-updates">
+
+                <!-- Add form -->
+                <div class="panel" id="updateForm">
+                    <div class="panel-header">
+                        <span class="panel-title"><i class="fas fa-plus-circle" style="color:var(--gld);margin-right:8px;"></i>Add Construction Update</span>
+                    </div>
+                    <div class="add-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Update Title *</label>
+                                <input type="text" id="uTitle" class="form-control" placeholder="e.g. Roof Installation Complete">
+                            </div>
+                            <div class="form-group">
+                                <label>Project</label>
+                                <select id="uProject" class="form-control">
+                                    <option value="Arcadia View">Arcadia View</option>
+                                    <option value="ABREMCO Farm">ABREMCO Farm</option>
+                                    <option value="General">General</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Date</label>
+                                <input type="date" id="uDate" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Status Badge</label>
+                                <select id="uStatus" class="form-control">
+                                    <option value="In Progress">In Progress</option>
+                                    <option value="Completed">Completed</option>
+                                    <option value="Upcoming">Upcoming</option>
+                                    <option value="Milestone">Milestone</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Update Description *</label>
+                            <textarea id="uDesc" class="form-control" placeholder="Describe the construction progress update in detail..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Photo URL (optional)</label>
+                            <input type="url" id="uPhoto" class="form-control" placeholder="https://... or images/NEW DEV/photo.jpg" oninput="previewImg(this,'uPhotoPreview')">
+                            <p class="form-hint">Paste a URL or relative path to a photo for this update.</p>
+                            <img id="uPhotoPreview" class="img-preview" alt="Preview">
+                        </div>
+                        <button class="btn-add" onclick="addUpdate()">
+                            <i class="fas fa-plus"></i> Save Update
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Saved updates -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <span class="panel-title"><i class="fas fa-list" style="color:var(--gld);margin-right:8px;"></i>Saved Updates (<span id="updateCount">0</span>)</span>
+                        <button class="btn-sm btn-danger" onclick="clearAll('updates','updateCount',renderUpdates)">
+                            <i class="fas fa-trash"></i> Clear All
+                        </button>
+                    </div>
+                    <div class="items-grid" id="updatesList"></div>
+                </div>
+            </div>
+
+            <!-- ════ TAB: PROGRESS PHOTOS ════ -->
+            <div class="tab-content" id="content-photos">
+
+                <div class="panel" id="photoForm">
+                    <div class="panel-header">
+                        <span class="panel-title"><i class="fas fa-camera" style="color:var(--gld);margin-right:8px;"></i>Add Progress Photo</span>
+                    </div>
+                    <div class="add-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Image URL / Path *</label>
+                                <input type="text" id="pUrl" class="form-control" placeholder="images/NEW DEV/photo.jpg or https://..." oninput="previewImg(this,'pPhotoPreview')">
+                                <p class="form-hint">Enter a relative path from your project folder, or a full URL.</p>
+                                <img id="pPhotoPreview" class="img-preview" alt="Preview">
+                            </div>
+                            <div class="form-group">
+                                <label>Caption *</label>
+                                <input type="text" id="pCaption" class="form-control" placeholder="e.g. Ground floor slab completion">
+                                <label style="margin-top:14px;">Project</label>
+                                <select id="pProject" class="form-control">
+                                    <option>Arcadia View</option>
+                                    <option>ABREMCO Farm</option>
+                                    <option>General</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Date Taken</label>
+                                <input type="date" id="pDate" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Category</label>
+                                <select id="pCategory" class="form-control">
+                                    <option>Foundation</option>
+                                    <option>Superstructure</option>
+                                    <option>Roofing</option>
+                                    <option>Interior Finishing</option>
+                                    <option>Exterior</option>
+                                    <option>Amenities</option>
+                                    <option>General</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="btn-add" onclick="addPhoto()">
+                            <i class="fas fa-plus"></i> Add Photo
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Photo grid -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <span class="panel-title"><i class="fas fa-th" style="color:var(--gld);margin-right:8px;"></i>Photo Library (<span id="photoCount">0</span>)</span>
+                        <button class="btn-sm btn-danger" onclick="clearAll('photos','photoCount',renderPhotos)">
+                            <i class="fas fa-trash"></i> Clear All
+                        </button>
+                    </div>
+                    <div class="photos-grid" id="photoGrid"></div>
+                </div>
+            </div>
+
+            <!-- ════ TAB: PROPERTY LISTINGS ════ -->
+            <div class="tab-content" id="content-listings">
+
+                <!-- Default listings notice -->
+                <div style="background:rgba(212,167,46,0.08);border:1px solid var(--border-gld);border-radius:2px;padding:14px 20px;margin-bottom:20px;font-size:0.84rem;color:var(--off-white);">
+                    <i class="fas fa-info-circle" style="color:var(--gld);margin-right:8px;"></i>
+                    The 4 default unit pages (1 Bed, 2 Bed, Penthouse 1BR, Penthouse 2BR) are managed via their HTML files. Use this section to add <strong style="color:var(--gld);">new projects or additional listings</strong>.
+                </div>
+
+                <div class="panel" id="listingForm">
+                    <div class="panel-header">
+                        <span class="panel-title"><i class="fas fa-plus-circle" style="color:var(--gld);margin-right:8px;"></i>Add New Property Listing</span>
+                    </div>
+                    <div class="add-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Property Name *</label>
+                                <input type="text" id="lName" class="form-control" placeholder="e.g. 3 Bedroom Apartment">
+                            </div>
+                            <div class="form-group">
+                                <label>Project / Development</label>
+                                <input type="text" id="lProject" class="form-control" placeholder="e.g. Arcadia View Phase 2">
+                            </div>
+                        </div>
+                        <div class="form-row-3">
+                            <div class="form-group">
+                                <label>Price *</label>
+                                <input type="text" id="lPrice" class="form-control" placeholder="e.g. $150,000">
+                            </div>
+                            <div class="form-group">
+                                <label>Type</label>
+                                <select id="lType" class="form-control">
+                                    <option>Apartment</option>
+                                    <option>Penthouse</option>
+                                    <option>Townhouse</option>
+                                    <option>Villa</option>
+                                    <option>Commercial</option>
+                                    <option>Land</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select id="lStatus" class="form-control">
+                                    <option>Available</option>
+                                    <option>Sold Out</option>
+                                    <option>Coming Soon</option>
+                                    <option>Limited Units</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Bedrooms</label>
+                                <input type="number" id="lBeds" class="form-control" placeholder="e.g. 3" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Area (sqm)</label>
+                                <input type="text" id="lArea" class="form-control" placeholder="e.g. ~90 sqm">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Description *</label>
+                            <textarea id="lDesc" class="form-control" placeholder="Describe the property — features, location, lifestyle benefits..."></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Cover Image URL / Path</label>
+                                <input type="text" id="lImg" class="form-control" placeholder="images/estate/photo.webp or https://..." oninput="previewImg(this,'lImgPreview')">
+                                <img id="lImgPreview" class="img-preview" alt="Preview">
+                            </div>
+                            <div class="form-group">
+                                <label>Key Features (one per line)</label>
+                                <textarea id="lFeatures" class="form-control" placeholder="Smart home features&#10;Swimming pool access&#10;24/7 generator&#10;Dedicated parking"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>WhatsApp Enquiry Link</label>
+                                <input type="text" id="lWa" class="form-control" placeholder="https://wa.me/233...">
+                            </div>
+                            <div class="form-group">
+                                <label>Page Link (optional)</label>
+                                <input type="text" id="lLink" class="form-control" placeholder="unit-3bed.html">
+                            </div>
+                        </div>
+                        <button class="btn-add" onclick="addListing()">
+                            <i class="fas fa-plus"></i> Save Listing
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Default listings (read-only view) -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <span class="panel-title"><i class="fas fa-home" style="color:var(--gld);margin-right:8px;"></i>Default Unit Pages</span>
+                        <span style="font-size:0.74rem;color:var(--muted);">Edit via HTML files</span>
+                    </div>
+                    <div style="padding:16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;">
+                        <div class="listing-card" style="grid-template-columns:1fr;">
+                            <div><div class="listing-type">Apartment</div><div class="listing-title">1 Bedroom</div><div class="listing-price">$85,000</div></div>
+                            <div><a href="unit-1bed.html" target="_blank" class="btn-sm btn-success"><i class="fas fa-external-link-alt"></i> View Page</a></div>
+                        </div>
+                        <div class="listing-card" style="grid-template-columns:1fr;">
+                            <div><div class="listing-type">Apartment</div><div class="listing-title">Two Bedroom Residence</div><div class="listing-price">$112,000</div></div>
+                            <div><a href="unit-2bed.html" target="_blank" class="btn-sm btn-success"><i class="fas fa-external-link-alt"></i> View Page</a></div>
+                        </div>
+                        <div class="listing-card" style="grid-template-columns:1fr;">
+                            <div><div class="listing-type">Penthouse</div><div class="listing-title">One Bedroom Penthouse Residence</div><div class="listing-price">$92,000</div></div>
+                            <div><a href="unit-1bed-penthouse.html" target="_blank" class="btn-sm btn-success"><i class="fas fa-external-link-alt"></i> View Page</a></div>
+                        </div>
+                        <div class="listing-card" style="grid-template-columns:1fr;">
+                            <div><div class="listing-type">Penthouse</div><div class="listing-title">Signature Two Bedroom Penthouse Residence</div><div class="listing-price">$121,000</div></div>
+                            <div><a href="unit-2bed-penthouse.html" target="_blank" class="btn-sm btn-success"><i class="fas fa-external-link-alt"></i> View Page</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Added listings -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <span class="panel-title"><i class="fas fa-list" style="color:var(--gld);margin-right:8px;"></i>Added Listings (<span id="listingCount">0</span>)</span>
+                        <button class="btn-sm btn-danger" onclick="clearAll('listings','listingCount',renderListings)">
+                            <i class="fas fa-trash"></i> Clear All
+                        </button>
+                    </div>
+                    <div style="padding:16px;display:flex;flex-direction:column;gap:12px;" id="listingsList"></div>
+                </div>
+            </div>
+
+            <!-- ════ TAB: INQUIRIES ════ -->
+            <div class="tab-content" id="content-inquiries">
+                <div style="background:rgba(212,167,46,0.08);border:1px solid var(--border-gld);border-radius:2px;padding:14px 20px;margin-bottom:20px;font-size:0.84rem;color:var(--off-white);">
+                    <i class="fas fa-info-circle" style="color:var(--gld);margin-right:8px;"></i>
+                    Inquiries submitted via the website contact forms are stored here. You can also <strong style="color:var(--gld);">manually add</strong> inquiries received by phone or WhatsApp.
+                </div>
+
+                <!-- Manual add -->
+                <div class="panel" id="inquiryForm">
+                    <div class="panel-header">
+                        <span class="panel-title"><i class="fas fa-user-plus" style="color:var(--gld);margin-right:8px;"></i>Add Manual Inquiry</span>
+                    </div>
+                    <div class="add-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Full Name *</label>
+                                <input type="text" id="iName" class="form-control" placeholder="Client's full name">
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" id="iEmail" class="form-control" placeholder="client@email.com">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Phone *</label>
+                                <input type="tel" id="iPhone" class="form-control" placeholder="+233...">
+                            </div>
+                            <div class="form-group">
+                                <label>Interest</label>
+                                <select id="iInterest" class="form-control">
+                                    <option>1 Bedroom - $85,000</option>
+                                    <option>Two Bedroom Residence - $112,000</option>
+                                    <option>One Bedroom Penthouse Residence - $92,000</option>
+                                    <option>Signature Two Bedroom Penthouse Residence - $121,000</option>
+                                    <option>ABREMCO Farm Investment</option>
+                                    <option>General Inquiry</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Source</label>
+                                <select id="iSource" class="form-control">
+                                    <option>Website Form</option>
+                                    <option>WhatsApp</option>
+                                    <option>Phone Call</option>
+                                    <option>Walk-in</option>
+                                    <option>Referral</option>
+                                    <option>Social Media</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Date</label>
+                                <input type="date" id="iDate" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Notes / Message</label>
+                            <textarea id="iNotes" class="form-control" placeholder="Any additional notes about this inquiry..."></textarea>
+                        </div>
+                        <button class="btn-add" onclick="addInquiry()">
+                            <i class="fas fa-plus"></i> Save Inquiry
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Inquiries table -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <span class="panel-title"><i class="fas fa-inbox" style="color:var(--gld);margin-right:8px;"></i>All Inquiries (<span id="inqCount">0</span>)</span>
+                        <div style="display:flex;gap:8px;">
+                            <button class="btn-sm btn-success" onclick="exportInquiries()"><i class="fas fa-download"></i> Export CSV</button>
+                            <button class="btn-sm btn-danger" onclick="clearAll('inquiries','inqCount',renderInqTable)"><i class="fas fa-trash"></i> Clear All</button>
+                        </div>
+                    </div>
+                    <div style="overflow-x:auto;">
+                        <table style="width:100%;border-collapse:collapse;">
+                            <thead><tr style="background:var(--pur-mid);">
+                                <th style="padding:12px 16px;text-align:left;font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gld);">#</th>
+                                <th style="padding:12px 16px;text-align:left;font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gld);">Name</th>
+                                <th style="padding:12px 16px;text-align:left;font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gld);">Contact</th>
+                                <th style="padding:12px 16px;text-align:left;font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gld);">Interest</th>
+                                <th style="padding:12px 16px;text-align:left;font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gld);">Source</th>
+                                <th style="padding:12px 16px;text-align:left;font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gld);">Date</th>
+                                <th style="padding:12px 16px;text-align:left;font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gld);">Action</th>
+                            </tr></thead>
+                            <tbody id="inqTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- content -->
+    </div><!-- main -->
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+<script>
+    /* ══ AUTH CHECK ══ */
+    if (!localStorage.getItem('abremco_admin_session')) {
+        window.location.href = 'admin.html';
+    }
+
+    /* ══ DATA HELPERS ══ */
+    function getData(k, def){ try{ return JSON.parse(localStorage.getItem('abremco_'+k)) || def; } catch(e){ return def; } }
+    function setData(k, v){ localStorage.setItem('abremco_'+k, JSON.stringify(v)); }
+    function esc(s){ const d=document.createElement('div'); d.textContent=String(s||''); return d.innerHTML; }
+    function fmtDate(d){ if(!d) return '—'; try{ return new Date(d).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}); } catch(e){ return d; } }
+    function uid(){ return Date.now() + Math.random().toString(36).slice(2,7); }
+
+    /* ══ TOAST ══ */
+    function toast(msg, type='success'){
+        const t = document.getElementById('toast');
+        t.innerHTML = `<i class="fas fa-${type==='success'?'check-circle':'exclamation-circle'}"></i> ${msg}`;
+        t.style.borderColor = type==='success' ? 'var(--border-gld)' : 'rgba(239,68,68,0.30)';
+        t.style.color       = type==='success' ? 'var(--gld)' : '#fca5a5';
+        t.classList.add('show');
+        setTimeout(()=>t.classList.remove('show'), 3000);
+    }
+
+    /* ══ TABS ══ */
+    function switchTab(tab){
+        document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+        document.getElementById('tab-'+tab).classList.add('active');
+        document.getElementById('content-'+tab).classList.add('active');
+        document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+        const navEl = document.getElementById('nav-'+tab);
+        if(navEl) navEl.classList.add('active');
+        const titles = { updates:'Construction Updates', photos:'Progress Photos', listings:'Property Listings', inquiries:'Inquiries' };
+        document.getElementById('topbarTitle').textContent = titles[tab]||tab;
+        if(tab==='updates') renderUpdates();
+        if(tab==='photos')  renderPhotos();
+        if(tab==='listings') renderListings();
+        if(tab==='inquiries'){ renderInqTable(); setTodayDates(); }
+    }
+    function scrollToForm(){
+        const tab = document.querySelector('.tab-btn.active').id.replace('tab-','');
+        const form = document.getElementById(tab+'Form') || document.getElementById('listingForm');
+        if(form) form.scrollIntoView({behavior:'smooth'});
+    }
+
+    /* Set today as default date on all date inputs */
+    function setTodayDates(){
+        const today = new Date().toISOString().split('T')[0];
+        document.querySelectorAll('input[type="date"]').forEach(el=>{ if(!el.value) el.value=today; });
+    }
+
+    /* ══ IMAGE PREVIEW ══ */
+    function previewImg(input, previewId){
+        const prev = document.getElementById(previewId);
+        const url = input.value.trim();
+        if(url){
+            prev.src = url; prev.style.display='block';
+            prev.onerror = ()=>{ prev.style.display='none'; };
+        } else { prev.style.display='none'; }
+    }
+
+    /* ══ CONSTRUCTION UPDATES ══ */
+    function addUpdate(){
+        const title = document.getElementById('uTitle').value.trim();
+        const desc  = document.getElementById('uDesc').value.trim();
+        if(!title || !desc){ toast('Please fill in Title and Description.','error'); return; }
+        const data = getData('updates',[]);
+        data.push({
+            id: uid(), title,
+            project: document.getElementById('uProject').value,
+            date: document.getElementById('uDate').value || new Date().toISOString().split('T')[0],
+            status: document.getElementById('uStatus').value,
+            desc,
+            photo: document.getElementById('uPhoto').value.trim()
+        });
+        setData('updates', data);
+        document.getElementById('uTitle').value='';
+        document.getElementById('uDesc').value='';
+        document.getElementById('uPhoto').value='';
+        document.getElementById('uPhotoPreview').style.display='none';
+        renderUpdates();
+        toast('Construction update saved!');
+    }
+    function renderUpdates(){
+        const data = getData('updates',[]);
+        document.getElementById('updateCount').textContent = data.length;
+        const list = document.getElementById('updatesList');
+        if(!data.length){ list.innerHTML=`<div class="empty-state"><i class="fas fa-newspaper"></i>No updates added yet. Use the form above to add your first update.</div>`; return; }
+        list.innerHTML = data.slice().reverse().map(u=>`
+            <div class="item-card">
+                ${u.photo ? `<div class="item-thumb"><img src="${esc(u.photo)}" alt="" onerror="this.parentElement.innerHTML='<div class=\\'item-thumb-placeholder\\'><i class=\\'fas fa-image\\'></i></div>'"></div>` : `<div class="item-thumb"><div class="item-thumb-placeholder"><i class="fas fa-newspaper"></i></div></div>`}
+                <div class="item-body">
+                    <div class="item-title">${esc(u.title)}</div>
+                    <div class="item-meta">
+                        <span class="item-badge ${statusBadge(u.status)}">${esc(u.status)}</span>
+                        &nbsp; ${esc(u.project)} &nbsp;·&nbsp; ${fmtDate(u.date)}
+                    </div>
+                    <div class="item-desc">${esc(u.desc)}</div>
+                </div>
+                <button class="btn-sm btn-danger" onclick="deleteItem('updates','${u.id}',renderUpdates)">
+                    <i class="fas fa-trash"></i> Delete
+                </button>
+            </div>
+        `).join('');
+    }
+
+    /* ══ PROGRESS PHOTOS ══ */
+    function addPhoto(){
+        const url = document.getElementById('pUrl').value.trim();
+        const cap = document.getElementById('pCaption').value.trim();
+        if(!url || !cap){ toast('Please fill in Image URL and Caption.','error'); return; }
+        const data = getData('photos',[]);
+        data.push({
+            id: uid(), url, caption: cap,
+            project: document.getElementById('pProject').value,
+            date: document.getElementById('pDate').value || new Date().toISOString().split('T')[0],
+            category: document.getElementById('pCategory').value
+        });
+        setData('photos', data);
+        document.getElementById('pUrl').value='';
+        document.getElementById('pCaption').value='';
+        document.getElementById('pPhotoPreview').style.display='none';
+        renderPhotos();
+        toast('Photo added to library!');
+    }
+    function renderPhotos(){
+        const data = getData('photos',[]);
+        document.getElementById('photoCount').textContent = data.length;
+        const grid = document.getElementById('photoGrid');
+        if(!data.length){ grid.innerHTML=`<div class="empty-state" style="grid-column:1/-1;"><i class="fas fa-images"></i>No photos added yet.</div>`; return; }
+        grid.innerHTML = data.slice().reverse().map(p=>`
+            <div class="photo-card">
+                <img class="photo-img" src="${esc(p.url)}" alt="${esc(p.caption)}" onerror="this.outerHTML='<div class=\\'photo-img-placeholder\\'><i class=\\'fas fa-image\\'></i></div>'">
+                <div class="photo-footer">
+                    <div class="photo-caption" title="${esc(p.caption)}">${esc(p.caption)}</div>
+                    <div class="photo-date">${esc(p.category)} &middot; ${fmtDate(p.date)}</div>
+                    <div class="photo-actions">
+                        <button class="btn-sm btn-danger" onclick="deleteItem('photos','${p.id}',renderPhotos)">
+                            <i class="fas fa-trash"></i> Remove
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    /* ══ PROPERTY LISTINGS ══ */
+    function addListing(){
+        const name = document.getElementById('lName').value.trim();
+        const price = document.getElementById('lPrice').value.trim();
+        const desc = document.getElementById('lDesc').value.trim();
+        if(!name||!price||!desc){ toast('Please fill in Name, Price and Description.','error'); return; }
+        const data = getData('listings',[]);
+        data.push({
+            id: uid(), name, price,
+            project: document.getElementById('lProject').value.trim(),
+            type: document.getElementById('lType').value,
+            status: document.getElementById('lStatus').value,
+            beds: document.getElementById('lBeds').value,
+            area: document.getElementById('lArea').value.trim(),
+            desc,
+            img: document.getElementById('lImg').value.trim(),
+            features: document.getElementById('lFeatures').value.trim(),
+            wa: document.getElementById('lWa').value.trim(),
+            link: document.getElementById('lLink').value.trim(),
+            date: new Date().toISOString()
+        });
+        setData('listings', data);
+        ['lName','lProject','lPrice','lBeds','lArea','lDesc','lFeatures','lImg','lWa','lLink'].forEach(id=>{ document.getElementById(id).value=''; });
+        document.getElementById('lImgPreview').style.display='none';
+        renderListings();
+        toast('Listing saved successfully!');
+    }
+    function renderListings(){
+        const data = getData('listings',[]);
+        document.getElementById('listingCount').textContent = data.length;
+        const list = document.getElementById('listingsList');
+        if(!data.length){ list.innerHTML=`<div class="empty-state"><i class="fas fa-building"></i>No additional listings added yet.</div>`; return; }
+        list.innerHTML = data.slice().reverse().map(l=>`
+            <div class="listing-card">
+                <div class="listing-img">
+                    ${l.img ? `<img src="${esc(l.img)}" alt="${esc(l.name)}" onerror="this.parentElement.innerHTML='<div style=\\'width:100%;height:70px;background:var(--pur-card);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:1.5rem;\\'><i class=\\'fas fa-building\\'></i></div>'" style="width:100%;height:70px;object-fit:cover;">` : `<div style="width:100%;height:70px;background:var(--pur-card);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:1.5rem;"><i class="fas fa-building"></i></div>`}
+                </div>
+                <div>
+                    <div class="listing-type">${esc(l.type)} &middot; ${esc(l.project||'Arcadia View')}</div>
+                    <div class="listing-title">${esc(l.name)}</div>
+                    <div class="listing-price">${esc(l.price)}</div>
+                    <div class="listing-desc" style="margin-top:5px;">${esc(l.desc).slice(0,120)}${l.desc.length>120?'…':''}</div>
+                    <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
+                        ${l.beds ? `<span class="item-badge badge-purple"><i class="fas fa-bed"></i> ${esc(l.beds)} Bed</span>` : ''}
+                        ${l.area ? `<span class="item-badge badge-blue">${esc(l.area)}</span>` : ''}
+                        <span class="item-badge ${l.status==='Available'?'badge-green':l.status==='Sold Out'?'badge-gold':'badge-purple'}">${esc(l.status)}</span>
+                    </div>
+                </div>
+                <div class="listing-actions">
+                    ${l.wa ? `<a href="${esc(l.wa)}" target="_blank" class="btn-sm btn-success"><i class="fab fa-whatsapp"></i> Chat</a>` : ''}
+                    ${l.link ? `<a href="${esc(l.link)}" target="_blank" class="btn-sm btn-success"><i class="fas fa-eye"></i> View</a>` : ''}
+                    <button class="btn-sm btn-danger" onclick="deleteItem('listings','${l.id}',renderListings)"><i class="fas fa-trash"></i> Delete</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    /* ══ INQUIRIES ══ */
+    function addInquiry(){
+        const name = document.getElementById('iName').value.trim();
+        const phone = document.getElementById('iPhone').value.trim();
+        if(!name||!phone){ toast('Please fill in Name and Phone.','error'); return; }
+        const data = getData('inquiries',[]);
+        data.push({
+            id: uid(), name,
+            email: document.getElementById('iEmail').value.trim(),
+            phone,
+            interest: document.getElementById('iInterest').value,
+            source: document.getElementById('iSource').value,
+            date: document.getElementById('iDate').value || new Date().toISOString().split('T')[0],
+            message: document.getElementById('iNotes').value.trim()
+        });
+        setData('inquiries', data);
+        ['iName','iEmail','iPhone','iNotes'].forEach(id=>{ document.getElementById(id).value=''; });
+        renderInqTable();
+        toast('Inquiry saved!');
+    }
+    function renderInqTable(){
+        const data = getData('inquiries',[]);
+        document.getElementById('inqCount').textContent = data.length;
+        const tb = document.getElementById('inqTable');
+        if(!data.length){ tb.innerHTML=`<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:32px;">No inquiries yet.</td></tr>`; return; }
+        tb.innerHTML = data.slice().reverse().map((i,idx)=>`
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                <td style="padding:12px 16px;color:var(--muted);font-size:0.80rem;">${data.length-idx}</td>
+                <td style="padding:12px 16px;font-weight:600;color:#FFFFFF;">${esc(i.name)}</td>
+                <td style="padding:12px 16px;font-size:0.80rem;color:var(--off-white);">${esc(i.email||'—')}<br>${esc(i.phone||'—')}</td>
+                <td style="padding:12px 16px;font-size:0.80rem;color:var(--off-white);">${esc(i.interest||'—')}</td>
+                <td style="padding:12px 16px;"><span class="item-badge badge-blue">${esc(i.source||'Website')}</span></td>
+                <td style="padding:12px 16px;font-size:0.80rem;color:var(--muted);">${fmtDate(i.date)}</td>
+                <td style="padding:12px 16px;">
+                    ${i.phone?`<a href="https://wa.me/${i.phone.replace(/\D/g,'')}" target="_blank" class="btn-sm btn-success" style="margin-right:6px;"><i class="fab fa-whatsapp"></i></a>`:''}
+                    <button class="btn-sm btn-danger" onclick="deleteItem('inquiries','${i.id}',renderInqTable)"><i class="fas fa-trash"></i></button>
+                </td>
+            </tr>
+        `).join('');
+    }
+    function exportInquiries(){
+        const data = getData('inquiries',[]);
+        if(!data.length){ toast('No inquiries to export.','error'); return; }
+        const headers = ['#','Name','Email','Phone','Interest','Source','Date','Notes'];
+        const rows = data.map((i,idx)=>[idx+1,i.name,i.email||'',i.phone||'',i.interest||'',i.source||'',i.date||'',i.message||''].map(v=>`"${String(v).replace(/"/g,'""')}"`).join(','));
+        const csv = [headers.join(','), ...rows].join('\n');
+        const a = document.createElement('a');
+        a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+        a.download = 'abremco_inquiries_' + new Date().toISOString().split('T')[0] + '.csv';
+        a.click();
+        toast('CSV exported!');
+    }
+
+    /* ══ GENERIC HELPERS ══ */
+    function deleteItem(key, id, cb){
+        if(!confirm('Delete this item?')) return;
+        const data = getData(key,[]).filter(i=>i.id!==id);
+        setData(key, data);
+        cb();
+        toast('Item deleted.');
+    }
+    function clearAll(key, countId, cb){
+        if(!confirm('Delete ALL items? This cannot be undone.')) return;
+        setData(key,[]);
+        document.getElementById(countId).textContent='0';
+        cb();
+        toast('All items cleared.');
+    }
+    function statusBadge(s){
+        const m = {'Completed':'badge-green','In Progress':'badge-gold','Upcoming':'badge-purple','Milestone':'badge-blue'};
+        return m[s]||'badge-purple';
+    }
+
+    /* ══ INIT ══ */
+    (function init(){
+        setTodayDates();
+        // Read tab from URL param
+        const p = new URLSearchParams(window.location.search);
+        const t = p.get('tab') || 'updates';
+        switchTab(t);
+    })();
+</script>
+</body>
+</html>

@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="images/logo/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/logo/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/logo/favicon-180.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our History, ABREMCO GROUP</title>
+<meta name="theme-color" content="#0D0120">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0A011E;
+      --purple: #7C3AED;
+      --purple-soft: rgba(124,58,237,0.18);
+      --purple-border: rgba(167,110,255,0.22);
+      --purple-border-bright: rgba(167,110,255,0.60);
+      --card-bg: rgba(30,8,80,0.55);
+      --gold: #D4A72E;
+      --gold-light: #F0C040;
+      --white: #FFFFFF;
+      --text-muted: rgba(255,255,255,0.72);
+      --eyebrow: #C084FC;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ─── HEADER ─────────────────────────────────────────────── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,1,30,0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(167,110,255,0.20);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 5vw;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-link { display: flex; align-items: center; text-decoration: none; }
+    .logo-link img { height: 50px; object-fit: contain; }
+
+    nav { display: flex; align-items: center; gap: 32px; }
+    nav a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.80);
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: color 0.25s;
+    }
+    nav a:hover, nav a.active { color: var(--gold); }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    /* ─── HERO ───────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      padding: 80px 5vw 64px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 400px;
+      background: radial-gradient(ellipse at center, rgba(124,58,237,0.35) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 720px; }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--eyebrow);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.80);
+      line-height: 1.7;
+    }
+
+    /* ─── SECTION ────────────────────────────────────────────── */
+    section { padding: 72px 0; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 5vw;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .section-heading h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .section-heading p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ─── ORIGIN ─────────────────────────────────────────────── */
+    .origin-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .origin-text h2 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .origin-text p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.80;
+      margin-bottom: 16px;
+    }
+
+    .origin-stat-box {
+      background: linear-gradient(145deg, rgba(124,58,237,0.30) 0%, rgba(30,8,80,0.80) 100%);
+      border: 1px solid var(--purple-border);
+      border-radius: 20px;
+      padding: 48px 40px;
+      text-align: center;
+    }
+
+    .origin-stat-box .stat-year {
+      font-size: 4rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .origin-stat-box .stat-label-main {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .origin-stat-box .divider {
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0 auto 20px;
+      opacity: 0.6;
+    }
+
+    .origin-stat-box .stat-location {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--eyebrow);
+    }
+
+    .origin-stat-box .stat-location i { font-size: 0.9rem; }
+
+    /* ─── TIMELINE ───────────────────────────────────────────── */
+    .timeline-section {
+      background: rgba(124,58,237,0.05);
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      background: linear-gradient(to bottom, transparent, rgba(124,58,237,0.60) 10%, rgba(212,167,46,0.50) 90%, transparent);
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 1fr 60px 1fr;
+      gap: 0;
+      margin-bottom: 48px;
+      align-items: start;
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    .timeline-left, .timeline-right {
+      padding: 0 32px;
+    }
+
+    /* odd items: content left, empty right */
+    .timeline-item:nth-child(odd) .timeline-left { order: 1; }
+    .timeline-item:nth-child(odd) .timeline-center { order: 2; }
+    .timeline-item:nth-child(odd) .timeline-right { order: 3; visibility: hidden; }
+
+    /* even items: empty left, content right */
+    .timeline-item:nth-child(even) .timeline-left { order: 1; visibility: hidden; }
+    .timeline-item:nth-child(even) .timeline-center { order: 2; }
+    .timeline-item:nth-child(even) .timeline-right { order: 3; visibility: hidden; }
+    .timeline-item:nth-child(even) .timeline-card { order: 3; }
+
+    /* Re-do with a simpler approach */
+    .tl-content-left {
+      padding-right: 40px;
+      text-align: right;
+    }
+
+    .tl-empty { }
+
+    .tl-content-right {
+      padding-left: 40px;
+    }
+
+    .timeline-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 12px;
+    }
+
+    .tl-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 3px solid var(--bg);
+      box-shadow: 0 0 0 3px rgba(212,167,46,0.40);
+      flex-shrink: 0;
+      z-index: 1;
+    }
+
+    .tl-year-badge {
+      margin-top: 10px;
+      background: var(--purple);
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .tl-card {
+      background: var(--card-bg);
+      border: 1px solid var(--purple-border);
+      border-radius: 14px;
+      padding: 28px 24px;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .tl-card:hover {
+      border-color: var(--purple-border-bright);
+      transform: translateY(-3px);
+    }
+
+    .tl-card h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .tl-card p {
+      font-size: 0.90rem;
+      color: var(--text-muted);
+      line-height: 1.70;
+    }
+
+    /* ─── ACHIEVEMENTS ───────────────────────────────────────── */
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      background: var(--card-bg);
+      border: 1px solid var(--purple-border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .achievement-item {
+      padding: 48px 28px;
+      text-align: center;
+      border-right: 1px solid var(--purple-border);
+      transition: background 0.3s;
+    }
+
+    .achievement-item:last-child { border-right: none; }
+    .achievement-item:hover { background: rgba(124,58,237,0.14); }
+
+    .achievement-num {
+      display: block;
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .achievement-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.4;
+    }
+
+    /* ─── LOOKING FORWARD ────────────────────────────────────── */
+    .forward-section {
+      background: linear-gradient(135deg, rgba(30,8,80,0.80) 0%, rgba(124,58,237,0.20) 100%);
+      border-top: 1px solid var(--purple-border);
+      border-bottom: 1px solid var(--purple-border);
+    }
+
+    .forward-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .forward-text h2 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .forward-text p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.80;
+      margin-bottom: 16px;
+    }
+
+    .forward-pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .forward-pillar {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--purple-border);
+      border-radius: 12px;
+      transition: border-color 0.3s;
+    }
+
+    .forward-pillar:hover { border-color: var(--purple-border-bright); }
+
+    .forward-pillar i {
+      font-size: 1.3rem;
+      color: var(--gold);
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .forward-pillar-text h4 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .forward-pillar-text p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* ─── CTA ────────────────────────────────────────────────── */
+    .cta-section { text-align: center; }
+
+    .cta-section h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+
+    .cta-section p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+    }
+
+    .btn-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: #0A011E;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.2s;
+    }
+
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 8px;
+      border: 1.5px solid rgba(255,255,255,0.60);
+      cursor: pointer;
+      transition: border-color 0.25s, background 0.25s, transform 0.2s;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-2px);
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      background: rgba(10,1,30,0.98);
+      border-top: 1px solid var(--purple-border);
+      padding: 56px 0 32px;
+    }
+
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+
+    /* ─── MOBILE ─────────────────────────────────────────────── */
+    @media (max-width: 680px) {
+      .origin-grid { grid-template-columns: 1fr; gap: 36px; }
+      .forward-inner { grid-template-columns: 1fr; gap: 36px; }
+      .achievements-grid { grid-template-columns: 1fr 1fr; }
+      .achievement-item:nth-child(2) { border-right: none; }
+      .achievement-item { border-bottom: 1px solid var(--purple-border); }
+      .achievement-item:last-child { border-bottom: none; }
+
+      /* Timeline goes single column */
+      .timeline::before {
+        left: 20px;
+      }
+
+      .timeline-item {
+        grid-template-columns: 40px 1fr !important;
+        gap: 0;
+      }
+
+      .tl-center { order: 1 !important; }
+      .tl-card-wrap { order: 2 !important; }
+      .tl-empty-mob { display: none; }
+
+      .tl-content-left, .tl-content-right {
+        padding: 0 0 0 16px;
+        text-align: left;
+      }
+
+      nav {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: rgba(10,1,30,0.98);
+        border-bottom: 1px solid var(--purple-border);
+        padding: 16px 0;
+      }
+      nav.open { display: flex; }
+      nav a { padding: 12px 5vw; font-size: 1rem; }
+      .nav-toggle { display: block; }
+    }
+
+    /* ── ENHANCED MOBILE RESPONSIVE ── */
+    @media (max-width: 768px) {
+      header { padding: 12px 20px !important; }
+      .logo-link img { max-height: 36px; }
+      .hero { min-height: 60vh !important; }
+      .hero-inner { padding: 90px 20px 52px !important; }
+      .hero h1 { font-size: clamp(1.9rem, 7vw, 3rem) !important; }
+      .hero-ctas { flex-direction: column; align-items: stretch; gap: 10px; }
+      .hero-ctas a { justify-content: center; width: 100%; }
+      section { padding: 52px 20px !important; }
+      .inner, .container { padding: 0 20px !important; }
+      .origin-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
+      .forward-inner { grid-template-columns: 1fr !important; gap: 28px !important; }
+      .achievements-grid { grid-template-columns: 1fr 1fr; }
+      .achievement-item:nth-child(2) { border-right: none; }
+    }
+    @media (max-width: 480px) {
+      header { padding: 10px 14px !important; }
+      .logo-link img { max-height: 30px; }
+      .hero { min-height: 55vh !important; }
+      .hero-inner { padding: 74px 14px 40px !important; }
+      .hero h1 { font-size: clamp(1.6rem, 8vw, 2.4rem) !important; }
+      section { padding: 40px 14px !important; }
+      .inner, .container { padding: 0 14px !important; }
+      .achievements-grid { grid-template-columns: 1fr 1fr; }
+      .achievement-item { border-right: none !important; }
+      nav a { min-height: 44px; display: flex; align-items: center; }
+    }
+  /* ══════════════════════════════════════════════════
+     WHITE THEME + ADVANCED REDESIGN
+  ══════════════════════════════════════════════════ */
+  body { background:#F5F3FC; color:#0D0120; }
+  ::-webkit-scrollbar-track { background:#E3DFF2; }
+
+  /* Header */
+  header { background:rgba(255,255,255,0.97) !important; border-color:rgba(107,33,200,0.12) !important; box-shadow:0 2px 24px rgba(107,33,200,0.08) !important; }
+  .logo-link img { filter:none !important; }
+  nav a { color:rgba(13,1,32,0.62) !important; }
+  nav a:hover, nav a.active { color:#9A6A00 !important; }
+
+  /* Hero — keep dark */
+  .hero { background:#0D0120; min-height:380px; }
+  .hero::before { background:radial-gradient(ellipse at center,rgba(107,33,200,0.42) 0%,transparent 70%); }
+  .hero h1 { font-size:clamp(2.4rem,5vw,3.8rem); font-weight:900; }
+  .eyebrow {
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(212,167,46,0.1); border:1px solid rgba(212,167,46,0.35);
+    color:#D4A72E !important; padding:7px 18px; border-radius:30px;
+    font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase;
+  }
+  .hero .eyebrow { color:#D4A72E !important; }
+
+  /* Gold divider utility */
+  .gold-divider { width:52px; height:3px; background:linear-gradient(90deg,#B8891A,#D4A72E,transparent); border-radius:2px; margin:14px auto 20px; }
+  .gold-divider.left { margin-left:0; }
+
+  /* Section headings */
+  .section-heading h2 { color:#0D0120; font-size:clamp(1.9rem,3.5vw,2.6rem); font-weight:900; }
+  .section-heading p { color:rgba(13,1,32,0.65); }
+
+  /* Origin section */
+  section:not(.hero):not(.timeline-section):not(.forward-section):not(.cta-section) { background:#F5F3FC; }
+  .origin-text h2 { color:#0D0120 !important; font-size:2rem; font-weight:900; }
+  .origin-text p { color:rgba(13,1,32,0.7) !important; }
+
+  /* Origin stat box — redesigned premium card */
+  .origin-stat-box {
+    background:#FFFFFF !important;
+    border:1px solid rgba(107,33,200,0.12) !important;
+    border-radius:24px !important;
+    box-shadow:0 12px 48px rgba(107,33,200,0.1) !important;
+    padding:52px 40px !important;
+    position:relative; overflow:hidden;
+  }
+  .origin-stat-box::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:4px;
+    background:linear-gradient(90deg,#B8891A,#D4A72E,#F0C84A,#D4A72E);
+  }
+  .origin-stat-box .stat-year { color:#B8891A !important; font-size:5rem !important; }
+  .origin-stat-box .stat-label-main { color:#0D0120 !important; }
+  .origin-stat-box .stat-location { color:#7C3AED !important; }
+  .origin-stat-box .divider { background:#D4A72E !important; opacity:0.5 !important; }
+
+  /* Timeline section */
+  .timeline-section { background:#E3DFF2 !important; }
+  .timeline::before { background:linear-gradient(to bottom,transparent,rgba(107,33,200,0.3) 10%,rgba(212,167,46,0.6) 90%,transparent) !important; }
+  .tl-dot { border-color:#F5F3FC !important; box-shadow:0 0 0 4px rgba(212,167,46,0.3) !important; }
+  .tl-year-badge { background:#7C3AED !important; color:#FFFFFF !important; font-size:0.78rem !important; padding:5px 14px !important; border-radius:20px !important; font-weight:800 !important; }
+
+  /* Timeline cards — white */
+  .tl-card {
+    background:#FFFFFF !important;
+    border:1px solid rgba(107,33,200,0.12) !important;
+    border-left:3px solid #D4A72E !important;
+    box-shadow:0 4px 20px rgba(107,33,200,0.08) !important;
+    border-radius:14px !important;
+  }
+  .tl-card:hover { border-color:rgba(212,167,46,0.4) !important; border-left-color:#D4A72E !important; box-shadow:0 14px 40px rgba(107,33,200,0.13) !important; }
+  .tl-card h3 { color:#9A6A00 !important; font-size:1.08rem !important; }
+  .tl-card p { color:rgba(13,1,32,0.68) !important; }
+
+  /* Achievements */
+  .achievements-grid {
+    background:#FFFFFF !important;
+    border:1px solid rgba(107,33,200,0.1) !important;
+    box-shadow:0 8px 32px rgba(107,33,200,0.08) !important;
+    border-radius:20px !important;
+  }
+  .achievement-item { border-color:rgba(107,33,200,0.08) !important; }
+  .achievement-item:hover { background:rgba(212,167,46,0.05) !important; }
+  .achievement-num { color:#B8891A !important; font-size:3.2rem !important; }
+  .achievement-label { color:rgba(13,1,32,0.62) !important; font-size:0.85rem !important; }
+
+  /* Forward / Looking Forward section */
+  .forward-section {
+    background:linear-gradient(135deg,#E3DFF2 0%,#D5D0E8 100%) !important;
+    border-color:rgba(107,33,200,0.1) !important;
+  }
+  .forward-text h2 { color:#0D0120 !important; font-size:2rem !important; font-weight:900 !important; }
+  .forward-text p { color:rgba(13,1,32,0.7) !important; }
+  .forward-pillar {
+    background:#FFFFFF !important;
+    border:1px solid rgba(107,33,200,0.12) !important;
+    box-shadow:0 4px 16px rgba(107,33,200,0.07) !important;
+    border-radius:14px !important;
+    transition:border-color 0.3s, transform 0.3s, box-shadow 0.3s !important;
+  }
+  .forward-pillar:hover { border-color:rgba(212,167,46,0.45) !important; transform:translateX(5px) !important; box-shadow:0 10px 28px rgba(107,33,200,0.12) !important; }
+  .forward-pillar-text h4 { color:#0D0120 !important; font-size:1rem !important; }
+  .forward-pillar-text p { color:rgba(13,1,32,0.65) !important; }
+
+  /* CTA section */
+  .cta-section { background:#D5D0E8 !important; padding:96px 0 !important; }
+  .cta-section h2 { color:#0D0120 !important; font-size:clamp(1.9rem,3.5vw,2.6rem) !important; font-weight:900 !important; }
+  .cta-section p { color:rgba(13,1,32,0.68) !important; }
+  .cta-section .btn-outline { color:#0D0120 !important; border-color:rgba(13,1,32,0.38) !important; }
+  .cta-section .btn-outline:hover { border-color:#0D0120 !important; background:rgba(13,1,32,0.05) !important; }
+  
+        /* ── ABREMCO Standard Footer ── */
+        footer { background: linear-gradient(180deg, #0D0120 0%, #060012 100%); color: #fff; }
+        .footer-top { padding: 60px 0 48px; }
+        .footer-container {
+            max-width: 1200px; margin: 0 auto; padding: 0 6vw;
+            display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.4fr; gap: 48px;
+        }
+        .footer-logo { display: flex; align-items: center; margin-bottom: 18px; }
+        .footer-logo img { max-width: 250px; width: 100%; height: auto; filter: brightness(1.1); }
+        .footer-about > p {
+            font-size: 0.85rem; line-height: 1.82;
+            color: rgba(255,255,255,0.62); margin-bottom: 22px; max-width: 280px;
+        }
+        .footer-links h3 {
+            font-size: 0.72rem; font-weight: 700; letter-spacing: 3px;
+            text-transform: uppercase; color: #FFFFFF; margin-bottom: 22px;
+            position: relative; padding-bottom: 12px;
+        }
+        .footer-links h3::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 32px; height: 2px;
+            background: linear-gradient(90deg, #D4A72E, #F0C84A); border-radius: 2px;
+        }
+        .footer-links ul { list-style: none; padding: 0; margin: 0; }
+        .footer-links ul li { margin-bottom: 10px; }
+        .footer-links ul li a {
+            font-size: 0.84rem; color: rgba(255,255,255,0.58);
+            text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+            transition: color 0.22s, gap 0.22s;
+        }
+        .footer-links ul li a::before { content: '›'; color: #D4A72E; font-size: 0.90rem; }
+        .footer-links ul li a:hover { color: #F0C84A; gap: 10px; }
+        .footer-contact-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 13px; }
+        .footer-contact-ico {
+            width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+            background: rgba(124,58,237,0.22); border: 1px solid rgba(167,110,255,0.28);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .footer-contact-ico i { color: #C084FC; font-size: 0.75rem; }
+        .footer-contact-text { font-size: 0.82rem; color: rgba(255,255,255,0.68); line-height: 1.55; padding-top: 6px; }
+        .footer-contact-text a { color: rgba(255,255,255,0.68); text-decoration: none; transition: color 0.22s; }
+        .footer-contact-text a:hover { color: #F0C84A; }
+        .footer-social { display: flex; gap: 10px; margin-top: 4px; flex-wrap: wrap; }
+        .footer-social a {
+            width: 36px; height: 36px; border-radius: 50%;
+            background: rgba(124,58,237,0.18); border: 1px solid rgba(167,110,255,0.28);
+            display: flex; align-items: center; justify-content: center;
+            color: rgba(255,255,255,0.70); font-size: 0.80rem; text-decoration: none;
+            transition: background 0.25s, color 0.25s, transform 0.25s;
+        }
+        .footer-social a:hover {
+            background: linear-gradient(135deg, #7C3AED, #A855F7);
+            border-color: #A855F7; color: #FFFFFF; transform: translateY(-3px);
+        }
+        .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: 0 6vw; }
+        .footer-bottom {
+            max-width: 1200px; margin: 0 auto; padding: 18px 6vw;
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 12px;
+        }
+        .footer-bottom p { font-size: 0.78rem; color: rgba(255,255,255,0.40); margin: 0; }
+        .footer-bottom-links { display: flex; gap: 20px; }
+        .footer-bottom-links a {
+            font-size: 0.76rem; color: rgba(255,255,255,0.40);
+            text-decoration: none; transition: color 0.22s;
+        }
+        .footer-bottom-links a:hover { color: #D4A72E; }
+        @media(max-width:1024px){ .footer-container { grid-template-columns: 1fr 1fr; gap: 36px; } }
+        @media(max-width:600px){ .footer-container { grid-template-columns: 1fr; gap: 28px; } .footer-bottom { flex-direction: column; text-align: center; } }
+        </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo-link">
+        <img src="images/logo/abremco_logo_dark.png" alt="ABREMCO GROUP Logo" />
+      </a>
+      <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Toggle navigation">
+        <i class="fa fa-bars"></i>
+      </button>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="what-we-do.html">What We Do</a>
+        <a href="mission.html">Mission</a>
+        <a href="team.html">Team</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="eyebrow"><i class="fas fa-landmark" style="font-size:0.7rem;margin-right:4px;"></i> Our Journey</span>
+      <h1>Our <span style="color:var(--gold);">History</span></h1>
+      <p>From a bold vision in Accra to a market-leading reality, the ABREMCO story, milestone by milestone.</p>
+    </div>
+  </section>
+
+  <!-- COMPANY ORIGIN -->
+  <section>
+    <div class="container">
+      <div class="origin-grid">
+        <div class="origin-text">
+          <span class="eyebrow"><i class="fas fa-seedling" style="font-size:0.7rem;margin-right:4px;"></i> How It All Began</span>
+          <div class="gold-divider left"></div>
+          <h2>Born from a Vision to <span style="color:#9A6A00;">Transform Ghana</span></h2>
+          <p>
+            ABREMCO GROUP was founded on a simple but powerful belief: that Ghanaians deserve
+            world-class homes, and that real estate can be a powerful vehicle for building lasting
+            generational wealth. What began as a bold idea in Accra quickly evolved into one of
+            Ghana's most ambitious real estate and investment companies.
+          </p>
+          <p>
+            From our very first project, we set out to raise the bar, combining international
+            design sensibilities with deep knowledge of local communities, creating spaces that
+            don't just house people, but inspire them. Today, that same spirit of ambition drives
+            everything we do.
+          </p>
+        </div>
+        <div>
+          <div class="origin-stat-box">
+            <span class="stat-year">2021</span>
+            <span class="stat-label-main">Year Founded</span>
+            <div class="divider"></div>
+            <div class="stat-location">
+              <i class="fa-solid fa-location-dot"></i>
+              <span>Accra, Ghana</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="timeline-section">
+    <div class="container">
+      <div class="section-heading">
+        <span class="eyebrow"><i class="fas fa-route" style="font-size:0.7rem;margin-right:4px;"></i> Milestones</span>
+        <div class="gold-divider"></div>
+        <h2>The ABREMCO <span style="color:#9A6A00;">Timeline</span></h2>
+        <p>Five years of growth, impact, and unwavering commitment to excellence.</p>
+      </div>
+
+      <div class="timeline">
+
+        <!-- 2021 — left side -->
+        <div style="display: grid; grid-template-columns: 1fr 80px 1fr; margin-bottom: 56px; align-items: start;">
+          <div style="padding-right: 36px; text-align: right;">
+            <div class="tl-card">
+              <h3><i class="fas fa-flag" style="margin-right:8px;font-size:0.9rem;"></i>Foundation</h3>
+              <p>ABREMCO GROUP established with a vision to transform Ghana's real estate landscape through innovation, quality craftsmanship, and community-focused development.</p>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; padding-top: 16px;">
+            <div class="tl-dot"></div>
+            <div class="tl-year-badge">2021</div>
+          </div>
+          <div></div>
+        </div>
+
+        <!-- 2022 — right side -->
+        <div style="display: grid; grid-template-columns: 1fr 80px 1fr; margin-bottom: 56px; align-items: start;">
+          <div></div>
+          <div style="display: flex; flex-direction: column; align-items: center; padding-top: 16px;">
+            <div class="tl-dot"></div>
+            <div class="tl-year-badge">2022</div>
+          </div>
+          <div style="padding-left: 36px;">
+            <div class="tl-card">
+              <h3><i class="fas fa-hard-hat" style="margin-right:8px;font-size:0.9rem;"></i>First Major Project</h3>
+              <p>Successfully completed our inaugural residential development, setting a new benchmark for quality, on-time delivery, and customer satisfaction in the Accra market.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2023 — left side -->
+        <div style="display: grid; grid-template-columns: 1fr 80px 1fr; margin-bottom: 56px; align-items: start;">
+          <div style="padding-right: 36px; text-align: right;">
+            <div class="tl-card">
+              <h3><i class="fas fa-chart-line" style="margin-right:8px;font-size:0.9rem;"></i>Portfolio Expansion</h3>
+              <p>Expanded into commercial properties and mixed-use developments across key growth corridors in Greater Accra, diversifying our portfolio and broadening our investor base.</p>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; padding-top: 16px;">
+            <div class="tl-dot"></div>
+            <div class="tl-year-badge">2023</div>
+          </div>
+          <div></div>
+        </div>
+
+        <!-- 2024 — right side -->
+        <div style="display: grid; grid-template-columns: 1fr 80px 1fr; margin-bottom: 56px; align-items: start;">
+          <div></div>
+          <div style="display: flex; flex-direction: column; align-items: center; padding-top: 16px;">
+            <div class="tl-dot"></div>
+            <div class="tl-year-badge">2024</div>
+          </div>
+          <div style="padding-left: 36px;">
+            <div class="tl-card">
+              <h3><i class="fas fa-leaf" style="margin-right:8px;font-size:0.9rem;"></i>Agricultural Diversification</h3>
+              <p>Strategic expansion into sustainable agriculture, integrating modern farming techniques, renewable technologies, and agri-investment opportunities for our growing investor community.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2025 — left side -->
+        <div style="display: grid; grid-template-columns: 1fr 80px 1fr; margin-bottom: 0; align-items: start;">
+          <div style="padding-right: 36px; text-align: right;">
+            <div class="tl-card" style="border-color: rgba(212,167,46,0.50);">
+              <h3 style="color: var(--eyebrow);">Arcadia View Launch</h3>
+              <p>Unveiled Arcadia View, our flagship smart-luxury residential development in Haatso, marking a defining milestone in ABREMCO's journey and signalling our ambition on the regional stage.</p>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; padding-top: 16px;">
+            <div class="tl-dot" style="background: var(--eyebrow); box-shadow: 0 0 0 3px rgba(192,132,252,0.40);"></div>
+            <div class="tl-year-badge" style="background: var(--gold); color: #0A011E;">2025</div>
+          </div>
+          <div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY ACHIEVEMENTS -->
+  <section>
+    <div class="container">
+      <div class="section-heading">
+        <span class="eyebrow"><i class="fas fa-trophy" style="font-size:0.7rem;margin-right:4px;"></i> By the Numbers</span>
+        <div class="gold-divider"></div>
+        <h2>Key <span style="color:#9A6A00;">Achievements</span></h2>
+        <p>The figures behind our five years of purposeful growth.</p>
+      </div>
+      <div class="achievements-grid">
+        <div class="achievement-item">
+          <i class="fas fa-calendar-check" style="font-size:1.6rem;color:#B8891A;margin-bottom:14px;display:block;"></i>
+          <span class="achievement-num">5</span>
+          <span class="achievement-label">Years of Growth</span>
+        </div>
+        <div class="achievement-item">
+          <i class="fas fa-building" style="font-size:1.6rem;color:#B8891A;margin-bottom:14px;display:block;"></i>
+          <span class="achievement-num">50+</span>
+          <span class="achievement-label">Projects Completed</span>
+        </div>
+        <div class="achievement-item">
+          <i class="fas fa-layer-group" style="font-size:1.6rem;color:#B8891A;margin-bottom:14px;display:block;"></i>
+          <span class="achievement-num">2</span>
+          <span class="achievement-label">Industry Sectors</span>
+        </div>
+        <div class="achievement-item">
+          <i class="fas fa-home" style="font-size:1.6rem;color:#B8891A;margin-bottom:14px;display:block;"></i>
+          <span class="achievement-num">100s</span>
+          <span class="achievement-label">of Families Housed</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOOKING FORWARD -->
+  <section class="forward-section">
+    <div class="container">
+      <div class="forward-inner">
+        <div class="forward-text">
+          <span class="eyebrow"><i class="fas fa-binoculars" style="font-size:0.7rem;margin-right:4px;"></i> The Road Ahead</span>
+          <div class="gold-divider left"></div>
+          <h2>Looking <span style="color:#9A6A00;">Forward</span></h2>
+          <p>
+            Our story is far from over. As we look to the next chapter, ABREMCO GROUP is
+            positioning itself for regional leadership across West Africa, with an expanded
+            pipeline of smart-luxury residential projects, agri-investment opportunities, and
+            technology-driven developments.
+          </p>
+          <p>
+            We are investing in PropTech innovation, forging strategic partnerships across the
+            continent, and deepening our commitment to sustainable development, because we believe
+            that the best way to honour our history is to make our future even bolder.
+          </p>
+        </div>
+        <div class="forward-pillars">
+          <div class="forward-pillar">
+            <i class="fa-solid fa-globe-africa"></i>
+            <div class="forward-pillar-text">
+              <h4>West Africa Expansion</h4>
+              <p>Extending our presence into key markets across the region.</p>
+            </div>
+          </div>
+          <div class="forward-pillar">
+            <i class="fa-solid fa-microchip"></i>
+            <div class="forward-pillar-text">
+              <h4>PropTech Innovation</h4>
+              <p>Smart building systems, digital investment platforms, and AI-driven property management.</p>
+            </div>
+          </div>
+          <div class="forward-pillar">
+            <i class="fa-solid fa-seedling"></i>
+            <div class="forward-pillar-text">
+              <h4>Sustainable Development Pipeline</h4>
+              <p>A growing portfolio of LEED-aligned, eco-conscious projects for the next generation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <span class="eyebrow"><i class="fas fa-handshake" style="font-size:0.7rem;margin-right:4px;"></i> Be Part of the Journey</span>
+      <div class="gold-divider"></div>
+      <h2>Write the Next Chapter <span style="color:#9A6A00;">With Us</span></h2>
+      <p>Whether you're an investor, homeowner, or partner, there's a place for you in the ABREMCO story.</p>
+      <div class="btn-group">
+        <a href="index.html#contact" class="btn-gold">
+          <i class="fa-solid fa-envelope"></i> Contact Us
+        </a>
+        <a href="index.html#current" class="btn-outline">
+          <i class="fa-solid fa-building"></i> View Properties
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+        <div class="footer-container">
+            <!-- Brand -->
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <img src="images/logo/abremco_logo.png" alt="ABREMCO GROUP">
+                </div>
+                <p>Building exceptional real estate developments across West Africa with integrity, quality, and innovation.</p>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/Abremcogroup" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/abremcogroup/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@AbremcoGroupltd" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.linkedin.com/company/110326931" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <!-- Quick Links -->
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#projects">Our Projects</a></li>
+                    <li><a href="index.html#current">Arcadia View</a></li>
+                    <li><a href="progress.html">Construction Progress</a></li>
+                    <li><a href="farm.html">Our Farm</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <!-- Services -->
+            <div class="footer-links">
+                <h3>Our Services</h3>
+                <ul>
+                    <li><a href="what-we-do.html">Residential Development</a></li>
+                    <li><a href="what-we-do.html">Commercial Properties</a></li>
+                    <li><a href="why-invest-accra.html">Why Invest in Accra</a></li>
+                    <li><a href="unit-1bed.html">1-Bedroom Units</a></li>
+                    <li><a href="unit-2bed.html">2-Bedroom Units</a></li>
+                    <li><a href="youtube-landing-arcadia.html">Watch Our Videos</a></li>
+                </ul>
+            </div>
+            <!-- Contact -->
+            <div class="footer-links">
+                <h3>Contact Info</h3>
+                <div class="footer-contact-item">
+                    <div class="footer-contact-ico"><i class="fas fa-map-marker-alt"></i></div>
+                    <span class="footer-contact-text">2nd Floor, Abremco Group Complex, Boshey, Haatso, North Legon, Accra, Ghana</span>
+                </div>
+                <div class="footer-contact-item">
+                    <div class="footer-contact-ico"><i class="fas fa-phone"></i></div>
+                    <span class="footer-contact-text">
+                        <a href="tel:+233256120940">+233 (0) 256 120 940</a><br>
+                        <a href="tel:+233256121028">+233 (0) 256 121 028</a>
+                    </span>
+                </div>
+                <div class="footer-contact-item">
+                    <div class="footer-contact-ico"><i class="fas fa-envelope"></i></div>
+                    <span class="footer-contact-text">
+                        <a href="mailto:info@abremcogroup.com">info@abremcogroup.com</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+        <p>&copy; 2025 ABREMCO GROUP. All Rights Reserved.</p>
+        <div class="footer-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </div>
+</footer>
+
+  <script>
+    // Responsive timeline on mobile: stack single column
+    function fixTimeline() {
+      const rows = document.querySelectorAll('.timeline > div[style]');
+      if (window.innerWidth <= 680) {
+        rows.forEach(row => {
+          row.style.gridTemplateColumns = '44px 1fr';
+          const children = Array.from(row.children);
+          // find the center dot div and the card div
+          children.forEach(child => {
+            if (child.querySelector('.tl-dot')) {
+              child.style.order = '1';
+            } else if (child.querySelector('.tl-card')) {
+              child.style.order = '2';
+              child.style.paddingLeft = '16px';
+              child.style.paddingRight = '0';
+              child.style.textAlign = 'left';
+            } else {
+              child.style.display = 'none';
+            }
+          });
+        });
+      }
+    }
+    window.addEventListener('resize', fixTimeline);
+    fixTimeline();
+  </script>
+
+</body>
+</html>

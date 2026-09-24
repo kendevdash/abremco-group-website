@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="images/logo/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/logo/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/logo/favicon-180.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meet Our Team — ABREMCO GROUP | Leadership You Can Trust</title>
+  <meta name="description" content="Meet the leadership team behind ABREMCO GROUP — Abraham Akpososo (CEO) and Esther Wulff Akpososo (COO). Trusted by 350+ buyers across Ghana, UK, USA and Canada.">
+<meta name="theme-color" content="#0D0120">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0A011E;
+      --pur-dark: #1A0533;
+      --pur-mid: #2D0A56;
+      --pur-card: #3D0F78;
+      --purple: #7C3AED;
+      --pur-soft: rgba(124,58,237,0.18);
+      --pur-border: rgba(167,110,255,0.22);
+      --pur-border-hi: rgba(167,110,255,0.60);
+      --card-bg: rgba(30,8,80,0.55);
+      --gold: #D4A72E;
+      --gold-light: #F0C84A;
+      --gold-dark: #B8891A;
+      --white: #FFFFFF;
+      --off-white: rgba(255,255,255,0.88);
+      --muted: rgba(255,255,255,0.58);
+      --eyebrow: #C084FC;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--white); overflow-x: hidden; }
+    a { text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(10,1,30,0.96);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(167,110,255,0.20);
+    }
+    .header-inner {
+      max-width: 1260px; margin: 0 auto; padding: 0 5vw;
+      height: 70px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo-link { display: flex; align-items: center; }
+    .logo-link img { height: 50px; object-fit: contain; }
+    nav { display: flex; align-items: center; gap: 28px; }
+    nav a { color: rgba(255,255,255,0.75); font-size: 0.875rem; font-weight: 600; letter-spacing: 0.04em; transition: color 0.25s; }
+    nav a:hover, nav a.active { color: var(--gold); }
+    .nav-cta {
+      padding: 8px 22px; background: var(--gold); color: #0A011E !important;
+      border-radius: 6px; font-weight: 800 !important; font-size: 0.82rem !important;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      transition: background 0.25s, transform 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--gold-light) !important; transform: translateY(-1px); }
+    .nav-toggle { display: none; background: none; border: none; color: var(--white); font-size: 1.4rem; cursor: pointer; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; min-height: 580px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; overflow: hidden; padding: 100px 5vw 0;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 100% 80% at 50% 0%, rgba(107,33,200,0.45) 0%, transparent 60%),
+                  radial-gradient(ellipse 60% 50% at 80% 50%, rgba(212,167,46,0.06) 0%, transparent 55%);
+    }
+    .hero-grid-lines {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(212,167,46,0.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(212,167,46,0.03) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 760px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(212,167,46,0.08); border: 1px solid rgba(212,167,46,0.3);
+      color: var(--gold); padding: 6px 18px; border-radius: 30px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 22px;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 900; line-height: 1.1;
+      color: var(--white); margin-bottom: 20px; letter-spacing: -0.5px;
+    }
+    .hero h1 .gold { color: var(--gold); }
+    .hero-sub {
+      font-size: 1.08rem; color: rgba(255,255,255,0.72); line-height: 1.75; max-width: 600px; margin: 0 auto 48px;
+    }
+
+    /* Hero stats strip */
+    .hero-stats {
+      position: relative; z-index: 1; width: 100%;
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(167,110,255,0.2);
+      border-bottom: none; border-radius: 16px 16px 0 0;
+      backdrop-filter: blur(20px);
+    }
+    .hs-item {
+      padding: 28px 20px; text-align: center;
+      border-right: 1px solid rgba(167,110,255,0.15);
+    }
+    .hs-item:last-child { border-right: none; }
+    .hs-num {
+      font-size: 2.2rem; font-weight: 900; line-height: 1;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 6px;
+    }
+    .hs-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: linear-gradient(135deg, rgba(212,167,46,0.08), rgba(212,167,46,0.03));
+      border-top: 1px solid rgba(212,167,46,0.2);
+      border-bottom: 1px solid rgba(212,167,46,0.2);
+      padding: 20px 0;
+    }
+    .trust-bar-inner {
+      max-width: 1260px; margin: 0 auto; padding: 0 5vw;
+      display: flex; align-items: center; justify-content: center;
+      gap: 40px; flex-wrap: wrap;
+    }
+    .tb-item { display: flex; align-items: center; gap: 10px; }
+    .tb-item i { color: var(--gold); font-size: 1rem; }
+    .tb-item span { font-size: 0.82rem; font-weight: 700; color: rgba(255,255,255,0.80); letter-spacing: 0.03em; }
+    .tb-sep { width: 1px; height: 22px; background: rgba(255,255,255,0.12); }
+
+    /* ── SECTION BASE ── */
+    section { padding: 88px 0; }
+    .container { max-width: 1260px; margin: 0 auto; padding: 0 5vw; }
+    .section-heading { text-align: center; margin-bottom: 60px; }
+    .section-heading h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 800; color: var(--white); margin-bottom: 12px; }
+    .section-heading h2 .gold { color: var(--gold); }
+    .section-heading p { font-size: 1rem; color: var(--muted); max-width: 580px; margin: 0 auto; line-height: 1.75; }
+    .gold-bar { width: 52px; height: 3px; background: linear-gradient(90deg, var(--gold-dark), var(--gold-light)); border-radius: 2px; margin: 0 auto 18px; }
+
+    /* ── LEADER CARDS ── */
+    .leadership-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+
+    .leader-card {
+      position: relative; background: rgba(18,4,48,0.80);
+      border: 1px solid rgba(167,110,255,0.22); border-radius: 22px; overflow: hidden;
+      transition: border-color 0.35s, transform 0.35s, box-shadow 0.35s;
+    }
+    .leader-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(212,167,46,0.6), transparent);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.5s;
+    }
+    .leader-card:hover { border-color: rgba(212,167,46,0.45); transform: translateY(-7px); box-shadow: 0 32px 72px rgba(0,0,0,0.5); }
+    .leader-card:hover::before { transform: scaleX(1); }
+
+    .leader-img-wrap { position: relative; width: 100%; height: 360px; overflow: hidden; }
+    .leader-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 0.6s ease, filter 0.4s ease; filter: brightness(1.18) contrast(1.08) saturate(1.15); }
+    .leader-card:hover .leader-img-wrap img { transform: scale(1.05); filter: brightness(1.28) contrast(1.1) saturate(1.2); }
+    .leader-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,1,30,0.98) 0%, rgba(10,1,30,0.3) 50%, transparent 100%); }
+
+    /* floating role badge on image */
+    .leader-role-badge {
+      position: absolute; bottom: 22px; left: 24px;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      color: #0A011E; font-size: 0.68rem; font-weight: 900;
+      letter-spacing: 0.14em; text-transform: uppercase; padding: 6px 16px; border-radius: 20px;
+    }
+    /* floating verified badge */
+    .leader-verified {
+      position: absolute; top: 20px; right: 20px;
+      background: rgba(10,1,30,0.85); border: 1px solid rgba(212,167,46,0.45);
+      color: var(--gold); font-size: 0.65rem; font-weight: 800;
+      padding: 5px 12px; border-radius: 20px; letter-spacing: 1px;
+      text-transform: uppercase; backdrop-filter: blur(12px);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .leader-verified i { font-size: 0.7rem; }
+
+    .leader-body { padding: 30px 32px 36px; }
+
+    .leader-meta { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 6px; }
+    .leader-name { font-size: 1.55rem; font-weight: 900; color: var(--white); letter-spacing: -0.3px; }
+    .leader-linkedin {
+      width: 36px; height: 36px; background: rgba(10,102,194,0.2); border: 1px solid rgba(10,102,194,0.4);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      color: #60A5FA; font-size: 0.9rem; transition: background 0.3s, border-color 0.3s; flex-shrink: 0;
+    }
+    .leader-linkedin:hover { background: rgba(10,102,194,0.35); border-color: rgba(10,102,194,0.7); }
+
+    .leader-title { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+
+    /* achievement metrics row */
+    .leader-metrics {
+      display: flex; gap: 0; margin: 18px 0 22px;
+      background: rgba(0,0,0,0.3); border: 1px solid rgba(167,110,255,0.15); border-radius: 12px; overflow: hidden;
+    }
+    .lm-item { flex: 1; padding: 14px 12px; text-align: center; border-right: 1px solid rgba(167,110,255,0.12); }
+    .lm-item:last-child { border-right: none; }
+    .lm-val { font-size: 1.4rem; font-weight: 900; background: linear-gradient(90deg, var(--gold), var(--gold-light)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; display: block; margin-bottom: 3px; }
+    .lm-label { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+
+    .leader-bio { font-size: 0.91rem; color: rgba(255,255,255,0.70); line-height: 1.82; margin-bottom: 24px; }
+
+    .expertise-label { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--eyebrow); margin-bottom: 10px; }
+    .expertise-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(124,58,237,0.2); border: 1px solid rgba(167,110,255,0.28);
+      color: rgba(255,255,255,0.82); font-size: 0.76rem; font-weight: 700;
+      padding: 5px 13px; border-radius: 20px;
+      transition: background 0.25s, border-color 0.25s;
+    }
+    .tag:hover { background: rgba(124,58,237,0.35); border-color: rgba(167,110,255,0.5); }
+    .tag i { color: var(--gold); font-size: 0.7rem; }
+
+    /* ── WHY TRUST SECTION ── */
+    .trust-section { background: var(--pur-dark); }
+    .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .trust-card {
+      background: rgba(18,4,48,0.70); border: 1px solid rgba(167,110,255,0.2);
+      border-radius: 16px; padding: 32px 24px; text-align: center;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .trust-card:hover { border-color: rgba(212,167,46,0.45); transform: translateY(-5px); }
+    .trust-icon {
+      width: 60px; height: 60px; border-radius: 50%; margin: 0 auto 18px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+    }
+    .ti-gold { background: rgba(212,167,46,0.12); border: 1px solid rgba(212,167,46,0.25); color: var(--gold); }
+    .ti-purple { background: rgba(124,58,237,0.18); border: 1px solid rgba(167,110,255,0.3); color: #A78BFA; }
+    .ti-green { background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.25); color: #34D399; }
+    .ti-blue { background: rgba(59,130,246,0.12); border: 1px solid rgba(59,130,246,0.25); color: #60A5FA; }
+    .trust-card h3 { font-size: 0.95rem; font-weight: 800; color: var(--white); margin-bottom: 10px; }
+    .trust-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.70; }
+
+    /* ── CULTURE SECTION ── */
+    .culture-section { background: rgba(124,58,237,0.05); border-top: 1px solid rgba(167,110,255,0.12); }
+    .culture-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .culture-card {
+      background: var(--card-bg); border: 1px solid var(--pur-border);
+      border-radius: 18px; padding: 44px 32px 40px; text-align: center;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .culture-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
+    }
+    .culture-card:hover { border-color: rgba(212,167,46,0.35); transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.35); }
+    .culture-card:hover::before { transform: scaleX(1); }
+    .culture-icon { width: 72px; height: 72px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 1.8rem; }
+    .culture-icon.gold { background: rgba(212,167,46,0.18); color: var(--gold); }
+    .culture-icon.purple { background: rgba(124,58,237,0.25); color: #A78BFA; }
+    .culture-icon.teal { background: rgba(20,184,166,0.18); color: #2DD4BF; }
+    .culture-card h3 { font-size: 1.2rem; font-weight: 800; color: var(--white); margin-bottom: 14px; }
+    .culture-card p { font-size: 0.91rem; color: var(--muted); line-height: 1.75; }
+
+    /* ── TESTIMONIAL STRIP ── */
+    .testi-strip {
+      background: linear-gradient(135deg, rgba(212,167,46,0.06), rgba(107,33,200,0.08));
+      border-top: 1px solid rgba(212,167,46,0.15);
+      border-bottom: 1px solid rgba(212,167,46,0.15);
+      padding: 72px 0;
+    }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .testi-card {
+      background: rgba(18,4,48,0.7); border: 1px solid rgba(167,110,255,0.2);
+      border-radius: 16px; padding: 30px 28px;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .testi-card:hover { border-color: rgba(212,167,46,0.4); transform: translateY(-4px); }
+    .testi-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 14px; }
+    .testi-text { font-size: 0.91rem; color: rgba(255,255,255,0.80); line-height: 1.78; margin-bottom: 20px; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .testi-avatar {
+      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 0.9rem; color: #0A011E;
+    }
+    .testi-name { font-size: 0.88rem; font-weight: 700; color: var(--white); }
+    .testi-loc { font-size: 0.75rem; color: var(--muted); }
+
+    /* ── JOIN CTA ── */
+    .join-section {
+      background: linear-gradient(135deg, rgba(107,33,200,0.3) 0%, rgba(10,1,30,0.95) 60%, rgba(30,8,80,0.8) 100%);
+      border-top: 1px solid var(--pur-border); border-bottom: 1px solid var(--pur-border);
+      text-align: center; padding: 100px 0;
+    }
+    .join-section h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; color: var(--white); margin-bottom: 14px; }
+    .join-section h2 .gold { color: var(--gold); }
+    .join-section .lead { font-size: 1.02rem; color: var(--muted); max-width: 540px; margin: 0 auto 32px; line-height: 1.78; }
+    .join-contact-row {
+      display: flex; align-items: center; justify-content: center; gap: 32px;
+      flex-wrap: wrap; margin-bottom: 40px;
+    }
+    .jcr-item { display: flex; align-items: center; gap: 10px; }
+    .jcr-item i { color: var(--gold); font-size: 1.1rem; }
+    .jcr-item a { color: rgba(255,255,255,0.85); font-weight: 700; font-size: 0.92rem; transition: color 0.25s; border-bottom: 1px solid rgba(212,167,46,0.3); padding-bottom: 2px; }
+    .jcr-item a:hover { color: var(--gold); border-color: var(--gold); }
+    .btn-group { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .btn-gold { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: #0A011E; font-family: 'Montserrat', sans-serif; font-size: 0.88rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; padding: 14px 32px; border-radius: 8px; border: none; cursor: pointer; transition: background 0.25s, transform 0.2s; box-shadow: 0 6px 24px rgba(212,167,46,0.35); }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(212,167,46,0.5); }
+    .btn-wa { display: inline-flex; align-items: center; gap: 8px; background: rgba(37,211,102,0.15); border: 1.5px solid rgba(37,211,102,0.45); color: #4ADE80; font-family: 'Montserrat', sans-serif; font-size: 0.88rem; font-weight: 700; padding: 14px 32px; border-radius: 8px; transition: background 0.25s, transform 0.2s; }
+    .btn-wa:hover { background: rgba(37,211,102,0.25); transform: translateY(-2px); }
+    .btn-outline { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 0.88rem; font-weight: 700; padding: 14px 30px; border-radius: 8px; border: 1.5px solid rgba(255,255,255,0.45); transition: all 0.25s; }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.07); transform: translateY(-2px); }
+
+    /* ════ WA LIVE CHAT WIDGET ════ */
+        .wa-widget{position:fixed;bottom:22px;right:22px;z-index:9000;display:flex;flex-direction:column;align-items:flex-end;gap:10px;font-family:'Segoe UI',system-ui,sans-serif;}
+        .wa-btn{width:58px;height:58px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);color:#fff;font-size:1.45rem;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 28px rgba(37,211,102,0.5);transition:transform 0.3s,box-shadow 0.3s;animation:waPop 0.55s cubic-bezier(0.34,1.56,0.64,1) 2s both;position:relative;flex-shrink:0;}
+        @keyframes waPop{0%{transform:scale(0);}100%{transform:scale(1);}}
+        .wa-btn:hover{transform:scale(1.1);box-shadow:0 10px 36px rgba(37,211,102,0.65);}
+        .wa-notif-dot{position:absolute;top:1px;right:1px;width:16px;height:16px;border-radius:50%;background:#ff3b30;border:2px solid #fff;font-size:0.58rem;font-weight:800;color:#fff;display:flex;align-items:center;justify-content:center;line-height:1;animation:notifPulse 2s ease-in-out infinite;}
+        @keyframes notifPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,59,48,0.55);}55%{box-shadow:0 0 0 7px rgba(255,59,48,0);}}
+        .wa-popup{width:316px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.28),0 2px 8px rgba(0,0,0,0.1);transform:translateY(18px) scale(0.94);opacity:0;pointer-events:none;transition:transform 0.38s cubic-bezier(0.34,1.4,0.64,1),opacity 0.3s ease;transform-origin:bottom right;}
+        .wa-popup.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all;}
+        .wa-popup-header{background:linear-gradient(120deg,#075e54 0%,#128c7e 100%);padding:14px 14px 13px;display:flex;align-items:center;justify-content:space-between;}
+        .wa-agent-row{display:flex;align-items:center;gap:11px;}
+        .wa-agent-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#1ebe5d,#0a6e5e);border:2px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;font-size:0.88rem;font-weight:800;color:#fff;position:relative;flex-shrink:0;}
+        .wa-online-ring{position:absolute;bottom:-1px;right:-1px;width:13px;height:13px;border-radius:50%;background:#4caf50;border:2px solid #075e54;}
+        .wa-agent-name{font-size:0.9rem;font-weight:700;color:#fff;line-height:1.2;}
+        .wa-agent-status{display:flex;align-items:center;gap:5px;font-size:0.68rem;color:rgba(255,255,255,0.72);margin-top:3px;}
+        .wa-status-pulse{width:7px;height:7px;border-radius:50%;background:#4caf50;animation:statusBlink 1.6s ease-in-out infinite;}
+        @keyframes statusBlink{0%,100%{opacity:1;}50%{opacity:0.35;}}
+        .wa-hdr-close{background:none;border:none;color:rgba(255,255,255,0.65);font-size:1rem;cursor:pointer;padding:5px;transition:color 0.2s;line-height:1;}
+        .wa-hdr-close:hover{color:#fff;}
+        .wa-popup-body{height:268px;overflow-y:auto;background-color:#dfe7dc;background-image:url("data:image/svg+xml,%3Csvg width='52' height='52' viewBox='0 0 52 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M26 26 L24 24 L26 22 L28 24 Z M26 26 L28 28 L26 30 L24 28 Z' fill='%23b5c4b0' fill-opacity='0.18'/%3E%3C/svg%3E");padding:12px 10px;display:flex;flex-direction:column;gap:7px;scroll-behavior:smooth;}
+        .wa-popup-body::-webkit-scrollbar{width:3px;}
+        .wa-popup-body::-webkit-scrollbar-thumb{background:#b5c4b0;border-radius:2px;}
+        .wa-msg-in{background:#fff;border-radius:0 10px 10px 10px;padding:9px 11px 5px;max-width:88%;font-size:0.83rem;color:#2c2c2c;line-height:1.52;box-shadow:0 1px 3px rgba(0,0,0,0.12);align-self:flex-start;animation:msgPop 0.28s cubic-bezier(0.34,1.5,0.64,1) both;}
+        @keyframes msgPop{0%{transform:scale(0.82) translateY(8px);opacity:0;}100%{transform:scale(1) translateY(0);opacity:1;}}
+        .wa-msg-time{font-size:0.59rem;color:#aaa;float:right;margin-left:8px;margin-top:4px;clear:right;}
+        .wa-typing{background:#fff;border-radius:0 10px 10px 10px;padding:10px 13px;width:58px;display:flex;align-items:center;gap:4px;box-shadow:0 1px 3px rgba(0,0,0,0.11);align-self:flex-start;}
+        .wa-typing span{width:7px;height:7px;border-radius:50%;background:#aaa;animation:typingDot 1.3s ease-in-out infinite;}
+        .wa-typing span:nth-child(2){animation-delay:0.18s;}
+        .wa-typing span:nth-child(3){animation-delay:0.36s;}
+        @keyframes typingDot{0%,55%,100%{transform:translateY(0);background:#aaa;}27%{transform:translateY(-5px);background:#777;}}
+        .wa-popup-footer{padding:10px 10px 12px;background:#f7f7f7;border-top:1px solid #e8e8e8;}
+        .wa-quick-grid{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:9px;}
+        .wa-quick-btn{background:#fff;border:1.5px solid #25d366;color:#075e54;font-size:0.74rem;font-weight:600;padding:6px 11px;border-radius:20px;cursor:pointer;transition:all 0.2s;font-family:inherit;white-space:nowrap;}
+        .wa-quick-btn:hover{background:#25d366;color:#fff;border-color:#25d366;transform:translateY(-1px);}
+        .wa-open-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:11px;border:none;border-radius:10px;background:linear-gradient(90deg,#25d366,#1ebe5d);color:#fff;font-weight:700;font-size:0.82rem;cursor:pointer;font-family:inherit;text-decoration:none;box-shadow:0 4px 14px rgba(37,211,102,0.38);transition:all 0.25s;}
+        .wa-open-btn:hover{background:linear-gradient(90deg,#1ebe5d,#17a852);transform:translateY(-1px);box-shadow:0 7px 22px rgba(37,211,102,0.5);}
+        .wa-powered{text-align:center;font-size:0.60rem;color:#bbb;margin-top:8px;letter-spacing:0.5px;}
+
+    
+    footer { background: rgba(10,1,30,0.98); border-top: 1px solid var(--pur-border); padding: 56px 0 32px; }
+    
+    
+    
+    
+    
+    
+    
+    
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1000px) {
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+      .hs-item:nth-child(2) { border-right: none; }
+    }
+    @media (max-width: 720px) {
+      .leadership-grid { grid-template-columns: 1fr; }
+      .culture-grid { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .trust-grid { grid-template-columns: 1fr 1fr; }
+      .hero-stats { grid-template-columns: repeat(2,1fr); border-radius: 12px 12px 0 0; }
+      .leader-img-wrap { height: 300px; }
+      nav { display: none; flex-direction: column; gap: 0; position: absolute; top: 70px; left: 0; right: 0; background: rgba(10,1,30,0.98); border-bottom: 1px solid var(--pur-border); padding: 16px 0; }
+      nav.open { display: flex; }
+      nav a { padding: 12px 5vw; font-size: 1rem; }
+      .nav-toggle { display: block; }
+      .trust-bar-inner { gap: 20px; }
+      .tb-sep { display: none; }
+    }
+    @media (max-width: 480px) {
+      .leader-metrics { flex-wrap: wrap; }
+      .lm-item { min-width: 50%; }
+      .trust-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── ENHANCED MOBILE RESPONSIVE ── */
+    @media (max-width: 768px) {
+      header { padding: 12px 20px !important; }
+      .logo-link img { max-height: 36px; }
+      .hero { min-height: 60vh; }
+      .hero-inner { padding: 90px 20px 52px !important; }
+      .hero h1 { font-size: clamp(1.9rem, 7vw, 3rem) !important; }
+      .hero-ctas { flex-direction: column; align-items: stretch; gap: 10px; }
+      .hero-ctas a { justify-content: center; width: 100%; }
+      .hero-stats { grid-template-columns: 1fr 1fr; border-radius: 12px; }
+      .hs-item:nth-child(2) { border-right: none; }
+      .hs-item:nth-child(4) { border-right: none; }
+      section { padding: 52px 0 !important; }
+      .section-heading { padding: 0 20px; }
+      .inner { padding: 0 20px !important; }
+      .leadership-grid { grid-template-columns: 1fr !important; }
+      .leader-img-wrap { height: 320px !important; }
+      .culture-grid { grid-template-columns: 1fr 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .trust-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      header { padding: 10px 14px !important; }
+      .logo-link img { max-height: 30px; }
+      .hero { min-height: 55vh; }
+      .hero-inner { padding: 74px 14px 40px !important; }
+      .hero h1 { font-size: clamp(1.6rem, 8vw, 2.4rem) !important; }
+      section { padding: 40px 0 !important; }
+      .inner { padding: 0 14px !important; }
+      .leader-img-wrap { height: 260px !important; }
+      .leader-metrics { flex-wrap: wrap; }
+      .lm-item { min-width: 50%; border-right: none; }
+      .culture-grid { grid-template-columns: 1fr; }
+      .trust-grid { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .hero-stats { grid-template-columns: 1fr 1fr; }
+      .nav-cta { min-height: 44px; }
+    }
+  /* ══════════════════════════════════════════════════
+     WHITE THEME + SHARP IMAGE UPGRADES
+  ══════════════════════════════════════════════════ */
+
+  /* Base */
+  body { background:#F5F3FC; color:#0D0120; }
+  ::-webkit-scrollbar-track { background:#E3DFF2; }
+
+  /* Header → white */
+  header { background:rgba(255,255,255,0.97) !important; border-color:rgba(107,33,200,0.12) !important; box-shadow:0 2px 24px rgba(107,33,200,0.08) !important; }
+  .logo-link img { filter:none !important; }
+  nav a { color:rgba(13,1,32,0.62) !important; }
+  nav a:hover, nav a.active { color:#9A6A00 !important; }
+  .nav-cta { background:var(--gold) !important; color:#0A011E !important; }
+
+  /* Hero stays dark */
+  .hero { background:#0D0120; }
+  .hero-stats { background:rgba(4,0,18,0.75) !important; }
+  .hs-label { color:rgba(255,255,255,0.55) !important; }
+
+  /* Trust bar */
+  .trust-bar { background:linear-gradient(90deg,#D5D0E8,#C8C2DE,#D5D0E8) !important; border-color:rgba(107,33,200,0.14) !important; }
+  .tb-item span { color:#0D0120 !important; }
+  .tb-sep { background:rgba(13,1,32,0.18) !important; }
+
+  /* Section headings */
+  .section-heading h2 { color:#0D0120 !important; }
+  .section-heading h2 .gold { color:#9A6A00 !important; }
+  .section-heading p { color:rgba(13,1,32,0.65) !important; }
+  .eyebrow { color:var(--gold) !important; background:rgba(212,167,46,0.1) !important; border-color:rgba(212,167,46,0.35) !important; }
+  .gold-bar { background:linear-gradient(90deg,#B8891A,#D4A72E,transparent) !important; }
+
+  /* ── LEADER CARDS — premium bright image style ── */
+  section:not(.hero):not(.trust-section):not(.testi-strip):not(.join-section) { background:#F5F3FC; }
+
+  .leader-card {
+    background:#FFFFFF !important;
+    border-color:rgba(107,33,200,0.12) !important;
+    box-shadow:0 8px 32px rgba(107,33,200,0.08) !important;
+    border-radius:24px !important;
+  }
+  .leader-card:hover {
+    border-color:rgba(212,167,46,0.5) !important;
+    box-shadow:0 28px 72px rgba(107,33,200,0.15) !important;
+    transform:translateY(-8px) !important;
+  }
+
+  /* Image: taller, brighter, sharper, gold frame */
+  .leader-img-wrap {
+    height:400px !important;
+    border-radius:0 !important;
+    position:relative;
+  }
+  .leader-img-wrap::after {
+    content:'';
+    position:absolute; inset:0;
+    box-shadow:inset 0 0 0 3px rgba(212,167,46,0.35);
+    pointer-events:none;
+    z-index:3;
+  }
+  .leader-img-wrap img {
+    filter:brightness(1.22) contrast(1.14) saturate(1.18) !important;
+    object-position:top center !important;
+  }
+  .leader-card:hover .leader-img-wrap img {
+    transform:scale(1.06) !important;
+    filter:brightness(1.32) contrast(1.16) saturate(1.22) !important;
+  }
+  /* lighter overlay so photo shows brighter */
+  .leader-img-overlay {
+    background:linear-gradient(to top, rgba(10,1,30,0.88) 0%, rgba(10,1,30,0.12) 42%, transparent 100%) !important;
+  }
+
+  /* Body text */
+  .leader-name { color:#0D0120 !important; }
+  .leader-title { color:#9A6A00 !important; }
+  .leader-bio { color:rgba(13,1,32,0.7) !important; }
+  .expertise-label { color:#7C3AED !important; }
+
+  /* Metrics row */
+  .leader-metrics {
+    background:rgba(107,33,200,0.05) !important;
+    border-color:rgba(107,33,200,0.12) !important;
+  }
+  .lm-item { border-color:rgba(107,33,200,0.08) !important; }
+  .lm-label { color:rgba(13,1,32,0.52) !important; }
+
+  /* Tags */
+  .tag {
+    background:rgba(124,58,237,0.07) !important;
+    border-color:rgba(124,58,237,0.2) !important;
+    color:rgba(13,1,32,0.75) !important;
+  }
+  .tag:hover { background:rgba(124,58,237,0.14) !important; }
+  .tag i { color:#9A6A00 !important; }
+
+  /* LinkedIn button */
+  .leader-linkedin { background:rgba(10,102,194,0.08) !important; border-color:rgba(10,102,194,0.25) !important; }
+
+  /* Trust section */
+  .trust-section { background:#E3DFF2 !important; }
+  .trust-card { background:#FFFFFF !important; border-color:rgba(107,33,200,0.12) !important; box-shadow:0 4px 18px rgba(107,33,200,0.06) !important; }
+  .trust-card:hover { border-color:rgba(212,167,46,0.4) !important; }
+  .trust-card h3 { color:#0D0120 !important; }
+  .trust-card p { color:rgba(13,1,32,0.65) !important; }
+
+  /* Culture section */
+  .culture-section { background:#F5F3FC !important; border-color:rgba(107,33,200,0.08) !important; }
+  .culture-card { background:#FFFFFF !important; border-color:rgba(107,33,200,0.12) !important; box-shadow:0 4px 20px rgba(107,33,200,0.06) !important; }
+  .culture-card:hover { border-color:rgba(212,167,46,0.4) !important; box-shadow:0 18px 48px rgba(107,33,200,0.12) !important; }
+  .culture-card h3 { color:#0D0120 !important; }
+  .culture-card p { color:rgba(13,1,32,0.65) !important; }
+
+  /* Testimonials strip */
+  .testi-strip { background:#E3DFF2 !important; border-color:rgba(107,33,200,0.12) !important; }
+  .testi-card { background:#FFFFFF !important; border-color:rgba(107,33,200,0.12) !important; box-shadow:0 4px 16px rgba(107,33,200,0.06) !important; }
+  .testi-card:hover { border-color:rgba(212,167,46,0.4) !important; }
+  .testi-text { color:rgba(13,1,32,0.72) !important; }
+  .testi-name { color:#0D0120 !important; }
+  .testi-loc { color:rgba(13,1,32,0.5) !important; }
+  
+        /* ── ABREMCO Standard Footer ── */
+        footer { background: linear-gradient(180deg, #0D0120 0%, #060012 100%); color: #fff; }
+        .footer-top { padding: 60px 0 48px; }
+        .footer-container {
+            max-width: 1200px; margin: 0 auto; padding: 0 6vw;
+            display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.4fr; gap: 48px;
+        }
+        .footer-logo { display: flex; align-items: center; margin-bottom: 18px; }
+        .footer-logo img { max-width: 250px; width: 100%; height: auto; filter: brightness(1.1); }
+        .footer-about > p {
+            font-size: 0.85rem; line-height: 1.82;
+            color: rgba(255,255,255,0.62); margin-bottom: 22px; max-width: 280px;
+        }
+        .footer-links h3 {
+            font-size: 0.72rem; font-weight: 700; letter-spacing: 3px;
+            text-transform: uppercase; color: #FFFFFF; margin-bottom: 22px;
+            position: relative; padding-bottom: 12px;
+        }
+        .footer-links h3::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 32px; height: 2px;
+            background: linear-gradient(90deg, #D4A72E, #F0C84A); border-radius: 2px;
+        }
+        .footer-links ul { list-style: none; padding: 0; margin: 0; }
+        .footer-links ul li { margin-bottom: 10px; }
+        .footer-links ul li a {
+            font-size: 0.84rem; color: rgba(255,255,255,0.58);
+            text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+            transition: color 0.22s, gap 0.22s;
+        }
+        .footer-links ul li a::before { content: '›'; color: #D4A72E; font-size: 0.90rem; }
+        .footer-links ul li a:hover { color: #F0C84A; gap: 10px; }
+        .footer-contact-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 13px; }
+        .footer-contact-ico {
+            width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+            background: rgba(124,58,237,0.22); border: 1px solid rgba(167,110,255,0.28);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .footer-contact-ico i { color: #C084FC; font-size: 0.75rem; }
+        .footer-contact-text { font-size: 0.82rem; color: rgba(255,255,255,0.68); line-height: 1.55; padding-top: 6px; }
+        .footer-contact-text a { color: rgba(255,255,255,0.68); text-decoration: none; transition: color 0.22s; }
+        .footer-contact-text a:hover { color: #F0C84A; }
+        .footer-social { display: flex; gap: 10px; margin-top: 4px; flex-wrap: wrap; }
+        .footer-social a {
+            width: 36px; height: 36px; border-radius: 50%;
+            background: rgba(124,58,237,0.18); border: 1px solid rgba(167,110,255,0.28);
+            display: flex; align-items: center; justify-content: center;
+            color: rgba(255,255,255,0.70); font-size: 0.80rem; text-decoration: none;
+            transition: background 0.25s, color 0.25s, transform 0.25s;
+        }
+        .footer-social a:hover {
+            background: linear-gradient(135deg, #7C3AED, #A855F7);
+            border-color: #A855F7; color: #FFFFFF; transform: translateY(-3px);
+        }
+        .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: 0 6vw; }
+        .footer-bottom {
+            max-width: 1200px; margin: 0 auto; padding: 18px 6vw;
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 12px;
+        }
+        .footer-bottom p { font-size: 0.78rem; color: rgba(255,255,255,0.40); margin: 0; }
+        .footer-bottom-links { display: flex; gap: 20px; }
+        .footer-bottom-links a {
+            font-size: 0.76rem; color: rgba(255,255,255,0.40);
+            text-decoration: none; transition: color 0.22s;
+        }
+        .footer-bottom-links a:hover { color: #D4A72E; }
+        @media(max-width:1024px){ .footer-container { grid-template-columns: 1fr 1fr; gap: 36px; } }
+        @media(max-width:600px){ .footer-container { grid-template-columns: 1fr; gap: 28px; } .footer-bottom { flex-direction: column; text-align: center; } }
+        </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo-link">
+      <img src="images/logo/abremco_logo_dark.png" alt="ABREMCO GROUP" />
+    </a>
+    <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="what-we-do.html">What We Do</a>
+      <a href="mission.html">Mission</a>
+      <a href="history.html">History</a>
+      <a href="contact.html" class="nav-cta">Contact Us</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-content">
+    <div class="eyebrow"><i class="fas fa-users" style="font-size:0.7rem;"></i> The People Behind ABREMCO</div>
+    <h1>Leadership You Can<br><span class="gold">Trust &amp; Rely On</span></h1>
+    <p class="hero-sub">
+      Meet the founders who built ABREMCO GROUP from the ground up, and the team dedicated to making every client's real estate journey exceptional, transparent, and rewarding.
+    </p>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="tb-item"><i class="fas fa-award"></i><span>Award-Winning Developer</span></div>
+    <div class="tb-sep"></div>
+    <div class="tb-item"><i class="fas fa-certificate"></i><span>Fully Licensed &amp; Registered</span></div>
+    <div class="tb-sep"></div>
+    <div class="tb-item"><i class="fas fa-shield-alt"></i><span>Title Deed on Every Unit</span></div>
+    <div class="tb-sep"></div>
+    <div class="tb-item"><i class="fas fa-globe"></i><span>Trusted by Diaspora in UK, USA &amp; Canada</span></div>
+    <div class="tb-sep"></div>
+    <div class="tb-item"><i class="fas fa-hard-hat"></i><span>On-Time Project Delivery</span></div>
+  </div>
+</div>
+
+<!-- LEADERSHIP -->
+<section>
+  <div class="container">
+    <div class="section-heading">
+      <div class="eyebrow"><i class="fas fa-crown" style="font-size:0.7rem;"></i> Our Leadership</div>
+      <div class="gold-bar"></div>
+      <h2>The Founders &amp; <span class="gold">Driving Force</span></h2>
+      <p>Two visionaries who built ABREMCO from the ground up, combining strategic ambition with operational excellence to deliver Ghana's most trusted premium properties.</p>
+    </div>
+
+    <div class="leadership-grid">
+
+      <!-- CEO -->
+      <div class="leader-card">
+        <div class="leader-img-wrap">
+          <img src="ic edit/ceo team imga.jpg" alt="Abraham Akpososo, CEO, ABREMCO GROUP" loading="eager" />
+          <div class="leader-img-overlay"></div>
+          <div class="leader-verified"><i class="fas fa-check-circle"></i> Verified Founder</div>
+          <span class="leader-role-badge">Chief Executive Officer</span>
+        </div>
+        <div class="leader-body">
+          <div class="leader-meta">
+            <div>
+              <div class="leader-title">CEO, Chief Executive Officer</div>
+              <div style="font-size:0.78rem;color:rgba(13,1,32,0.52);font-weight:500;margin-top:3px;margin-bottom:4px;line-height:1.55;">The highest-ranking leader of ABREMCO GROUP, sets the company vision, drives growth strategy, and is ultimately responsible for all business decisions.</div>
+              <div class="leader-name">Abraham Akpososo</div>
+            </div>
+            <a href="https://www.linkedin.com/company/110326931/" target="_blank" class="leader-linkedin" title="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+          <div class="leader-metrics">
+            <div class="lm-item">
+              <span class="lm-val">5+</span>
+              <span class="lm-label">Years Exp.</span>
+            </div>
+            <div class="lm-item">
+              <span class="lm-val">20+</span>
+              <span class="lm-label">Projects Led</span>
+            </div>
+            <div class="lm-item">
+              <span class="lm-val">50+</span>
+              <span class="lm-label">Buyers Served</span>
+            </div>
+          </div>
+          <p class="leader-bio">
+            Abraham brings over 5 years of experience in real estate development and investment strategy. He leads the company's strategic vision and oversees all major projects, ensuring excellence, innovation, and on-time delivery at every turn. As the driving force behind ABREMCO's growth from a bold idea to a market-leading developer, Abraham combines entrepreneurial courage with a disciplined, people-first approach to building lasting value.
+          </p>
+          <p class="expertise-label">Areas of Expertise</p>
+          <div class="expertise-tags">
+            <span class="tag"><i class="fas fa-chess"></i> Strategic Leadership</span>
+            <span class="tag"><i class="fas fa-building"></i> Real Estate Development</span>
+            <span class="tag"><i class="fas fa-chart-line"></i> Investment Strategy</span>
+            <span class="tag"><i class="fas fa-globe-africa"></i> Market Expansion</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- COO -->
+      <div class="leader-card">
+        <div class="leader-img-wrap">
+          <img src="ic edit/wulff.jpeg" alt="Esther Wulff Akpososo, COO, ABREMCO GROUP" loading="eager" />
+          <div class="leader-img-overlay"></div>
+          <div class="leader-verified"><i class="fas fa-check-circle"></i> Verified Founder</div>
+          <span class="leader-role-badge">Chief Operating Officer</span>
+        </div>
+        <div class="leader-body">
+          <div class="leader-meta">
+            <div>
+              <div class="leader-title">COO, Chief Operating Officer</div>
+              <div style="font-size:0.78rem;color:rgba(13,1,32,0.52);font-weight:500;margin-top:3px;margin-bottom:4px;line-height:1.55;">Oversees the day-to-day operations of ABREMCO GROUP, ensuring every project, team, and process runs smoothly, on time, and to the highest standard.</div>
+              <div class="leader-name">Esther Wulff Akpososo</div>
+            </div>
+            <a href="https://www.linkedin.com/company/110326931/" target="_blank" class="leader-linkedin" title="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+          <div class="leader-metrics">
+            <div class="lm-item">
+              <span class="lm-val">5+</span>
+              <span class="lm-label">Years Exp.</span>
+            </div>
+            <div class="lm-item">
+              <span class="lm-val">20+</span>
+              <span class="lm-label">Projects Managed</span>
+            </div>
+            <div class="lm-item">
+              <span class="lm-val">50+</span>
+              <span class="lm-label">Buyers Served</span>
+            </div>
+          </div>
+          <p class="leader-bio">
+            Esther ensures all company operations run with precision and purpose. She oversees project delivery from groundbreaking to handover, and maintains the high-quality standards that have become synonymous with the ABREMCO name. With a sharp eye for operational excellence and a gift for building cohesive teams, she is the engine that turns vision into reality, every single day.
+          </p>
+          <p class="expertise-label">Areas of Expertise</p>
+          <div class="expertise-tags">
+            <span class="tag"><i class="fas fa-cogs"></i> Operations Management</span>
+            <span class="tag"><i class="fas fa-hard-hat"></i> Project Delivery</span>
+            <span class="tag"><i class="fas fa-star"></i> Quality Assurance</span>
+            <span class="tag"><i class="fas fa-users"></i> Team Leadership</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY TRUST OUR TEAM -->
+<section class="trust-section">
+  <div class="container">
+    <div class="section-heading">
+      <div class="eyebrow"><i class="fas fa-shield-alt" style="font-size:0.7rem;"></i> Why Trust Us</div>
+      <div class="gold-bar"></div>
+      <h2>4 Reasons Clients <span class="gold">Choose ABREMCO</span></h2>
+      <p>Buying property is one of the biggest decisions of your life. Here's why 350+ buyers trusted us with theirs.</p>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card">
+        <div class="trust-icon ti-gold"><i class="fas fa-file-contract"></i></div>
+        <h3>Legal &amp; Transparent</h3>
+        <p>Every unit comes with full title deed transfer, transparent contracts, and legal documentation, no hidden fees, no surprises.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon ti-purple"><i class="fas fa-hard-hat"></i></div>
+        <h3>Track Record of Delivery</h3>
+        <p>50+ projects delivered on time. Our construction milestones are verified and reported to buyers at every stage, full visibility.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon ti-green"><i class="fas fa-globe"></i></div>
+        <h3>Diaspora-Trusted</h3>
+        <p>Hundreds of buyers from UK, USA, and Canada have invested remotely with us. Virtual tours, digital contracts, and international payments, handled seamlessly.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon ti-blue"><i class="fas fa-headset"></i></div>
+        <h3>After-Sales Support</h3>
+        <p>Our relationship doesn't end at handover. We provide ongoing property management, tenant sourcing, and after-sales care for every client.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANY CULTURE -->
+<section class="culture-section">
+  <div class="container">
+    <div class="section-heading">
+      <div class="eyebrow"><i class="fas fa-heart" style="font-size:0.7rem;"></i> Life at ABREMCO</div>
+      <div class="gold-bar"></div>
+      <h2>Our <span class="gold">Culture</span></h2>
+      <p>Three principles that define how we show up, for each other, for our clients, and for Ghana.</p>
+    </div>
+    <div class="culture-grid">
+      <div class="culture-card">
+        <div class="culture-icon gold"><i class="fa-solid fa-lightbulb"></i></div>
+        <h3>We Innovate</h3>
+        <p>We challenge convention and embrace new ideas. From smart building technology to digital-first investment platforms, we are always looking for a better way, because our clients deserve the best thinking we can give them.</p>
+      </div>
+      <div class="culture-card">
+        <div class="culture-icon purple"><i class="fa-solid fa-rocket"></i></div>
+        <h3>We Deliver</h3>
+        <p>Promises made are promises kept. Our teams are built around accountability, precision, and a relentless drive to meet, and exceed, every commitment we make to our investors, homeowners, and partners.</p>
+      </div>
+      <div class="culture-card">
+        <div class="culture-icon teal"><i class="fa-solid fa-heart"></i></div>
+        <h3>We Care</h3>
+        <p>People are at the heart of everything we build. We care about our team members' growth, our clients' dreams, and the communities we develop in. Real estate is personal, and we never lose sight of that.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-strip">
+  <div class="container">
+    <div class="section-heading">
+      <div class="eyebrow"><i class="fas fa-quote-left" style="font-size:0.7rem;"></i> Client Voices</div>
+      <div class="gold-bar"></div>
+      <h2>What Our <span class="gold">Buyers Say</span></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"I bought my unit from London after a virtual tour. ABREMCO's team handled everything remotely, contracts, documentation, payments. Completely professional from start to handover."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">KA</div>
+          <div>
+            <div class="testi-name">Kwame A.</div>
+            <div class="testi-loc">London, UK, 1 Bedroom Owner</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Finding a trustworthy developer back home was my biggest concern from the US. ABREMCO delivered exactly what they promised, quality build, on schedule, and professional throughout."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">AO</div>
+          <div>
+            <div class="testi-name">Abena O.</div>
+            <div class="testi-loc">New York, USA, Two Bedroom Residence Owner</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"The investment returns are already looking strong. I purchased at launch and the property has already appreciated. North Legon was clearly the right location, great advice from Abraham's team."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">EK</div>
+          <div>
+            <div class="testi-name">Emmanuel K.</div>
+            <div class="testi-loc">Toronto, Canada, Penthouse Owner</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN CTA -->
+<section class="join-section">
+  <div class="container">
+    <div class="eyebrow"><i class="fas fa-handshake" style="font-size:0.7rem;"></i> Join the Family</div>
+    <h2>Ready to Invest with a Team <span class="gold">You Can Trust?</span></h2>
+    <p class="lead">Whether you're a first-time buyer, a diaspora investor, or a seasoned real estate investor, our team is here to guide you every step of the way.</p>
+    <div class="join-contact-row">
+      <div class="jcr-item">
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:info@abremcogroup.com">info@abremcogroup.com</a>
+      </div>
+      <div class="jcr-item">
+        <i class="fas fa-phone"></i>
+        <a href="tel:+233256120940">+233 (0) 256 120 940</a>
+      </div>
+    </div>
+    <div class="btn-group">
+      <a href="https://wa.me/233256120940?text=Hi%2C+I%27d+like+to+speak+with+the+ABREMCO+team+about+investing." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+      <a href="contact.html" class="btn-gold"><i class="fas fa-key"></i> Start Investing</a>
+      <a href="index.html" class="btn-outline"><i class="fas fa-home"></i> Back to Home</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-top">
+        <div class="footer-container">
+            <!-- Brand -->
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <img src="images/logo/abremco_logo.png" alt="ABREMCO GROUP">
+                </div>
+                <p>Building exceptional real estate developments across West Africa with integrity, quality, and innovation.</p>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/Abremcogroup" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/abremcogroup/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@AbremcoGroupltd" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.linkedin.com/company/110326931" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <!-- Quick Links -->
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#projects">Our Projects</a></li>
+                    <li><a href="index.html#current">Arcadia View</a></li>
+                    <li><a href="progress.html">Construction Progress</a></li>
+                    <li><a href="farm.html">Our Farm</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <!-- Services -->
+            <div class="footer-links">
+                <h3>Our Services</h3>
+                <ul>
+                    <li><a href="what-we-do.html">Residential Development</a></li>
+                    <li><a href="what-we-do.html">Commercial Properties</a></li>
+                    <li><a href="why-invest-accra.html">Why Invest in Accra</a></li>
+                    <li><a href="unit-1bed.html">1-Bedroom Units</a></li>
+                    <li><a href="unit-2bed.html">2-Bedroom Units</a></li>
+                    <li><a href="youtube-landing-arcadia.html">Watch Our Videos</a></li>
+                </ul>
+            </div>
+            <!-- Contact -->
+            <div class="footer-links">
+                <h3>Contact Info</h3>
+                <div class="footer-contact-item">
+                    <div class="footer-contact-ico"><i class="fas fa-map-marker-alt"></i></div>
+                    <span class="footer-contact-text">2nd Floor, Abremco Group Complex, Boshey, Haatso, North Legon, Accra, Ghana</span>
+                </div>
+                <div class="footer-contact-item">
+                    <div class="footer-contact-ico"><i class="fas fa-phone"></i></div>
+                    <span class="footer-contact-text">
+                        <a href="tel:+233256120940">+233 (0) 256 120 940</a><br>
+                        <a href="tel:+233256121028">+233 (0) 256 121 028</a>
+                    </span>
+                </div>
+                <div class="footer-contact-item">
+                    <div class="footer-contact-ico"><i class="fas fa-envelope"></i></div>
+                    <span class="footer-contact-text">
+                        <a href="mailto:info@abremcogroup.com">info@abremcogroup.com</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+        <p>&copy; 2025 ABREMCO GROUP. All Rights Reserved.</p>
+        <div class="footer-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </div>
+</footer>
+
+<!-- WA LIVE CHAT WIDGET -->
+<script>var WA_CHAT=[{text:"👋 Hi there! Welcome to <strong>ABREMCO GROUP</strong>.",showAt:600},{text:"Would you like to speak with one of our team members or learn more about our properties? 😊",showAt:3000},{text:"We're here to help, whether it's about investing, our projects, or anything else. 🏙️",showAt:5800},{text:"How can we help you today? 👇",showAt:8400}];</script>
+<div class="wa-widget">
+    <div class="wa-popup" id="waPopup">
+        <div class="wa-popup-header">
+            <div class="wa-agent-row">
+                <div class="wa-agent-avatar">AG<span class="wa-online-ring"></span></div>
+                <div>
+                    <div class="wa-agent-name">ABREMCO Support</div>
+                    <div class="wa-agent-status"><span class="wa-status-pulse"></span>Online &mdash; replies instantly</div>
+                </div>
+            </div>
+            <button class="wa-hdr-close" onclick="toggleWaChat()" aria-label="Close"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="wa-popup-body" id="waMsgs"></div>
+        <div class="wa-popup-footer">
+            <div class="wa-quick-grid" id="waQuickGrid" style="display:none;">
+                <button class="wa-quick-btn" onclick="waReply('I would like to view properties in Accra')">🏠 View Properties</button>
+                <button class="wa-quick-btn" onclick="waReply('I would like to speak with an advisor')">💬 Speak to Advisor</button>
+                <button class="wa-quick-btn" onclick="waReply('I have a general enquiry for the team')">📋 General Enquiry</button>
+                <button class="wa-quick-btn" onclick="waReply('Please book a call with me')">📅 Book a Call</button>
+            </div>
+            <a href="https://wa.me/233256120940?text=Hi%2C+I%27d+like+to+speak+with+someone+from+the+ABREMCO+team." target="_blank" class="wa-open-btn"><i class="fab fa-whatsapp"></i> Continue on WhatsApp</a>
+            <div class="wa-powered">Powered by WhatsApp &bull; ABREMCO GROUP</div>
+        </div>
+    </div>
+    <button class="wa-btn" id="waBtn" onclick="toggleWaChat()" aria-label="Open WhatsApp chat"><i class="fab fa-whatsapp"></i><span class="wa-notif-dot">1</span></button>
+</div>
+
+<script>
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    document.querySelector('header').style.boxShadow = window.scrollY > 10 ? '0 4px 30px rgba(0,0,0,0.4)' : 'none';
+  }, { passive: true });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.leader-card, .trust-card, .culture-card, .testi-card');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }, i * 80);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  revealEls.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+    io.observe(el);
+  });
+
+    // ── WA LIVE CHAT WIDGET ──
+    (function(){
+        let waOpen=false,msgsSent=false;
+        function getNow(){const d=new Date();return d.getHours()+':'+String(d.getMinutes()).padStart(2,'0');}
+        function addTyping(c,id){const t=document.createElement('div');t.className='wa-typing';t.id='waT_'+id;t.innerHTML='<span></span><span></span><span></span>';c.appendChild(t);c.scrollTop=c.scrollHeight;}
+        function addMessage(c,id,html){const t=document.getElementById('waT_'+id);if(t)t.remove();const m=document.createElement('div');m.className='wa-msg-in';m.innerHTML=html+'<span class="wa-msg-time">'+getNow()+'</span>';c.appendChild(m);c.scrollTop=c.scrollHeight;}
+        function runChat(){
+            const c=document.getElementById('waMsgs'),qg=document.getElementById('waQuickGrid'),TD=1300;
+            WA_CHAT.forEach(function(item,i){
+                setTimeout(function(){addTyping(c,i);},item.showAt);
+                setTimeout(function(){addMessage(c,i,item.text);if(i===WA_CHAT.length-1){setTimeout(function(){qg.style.display='flex';},380);}},item.showAt+TD);
+            });
+        }
+        window.toggleWaChat=function(){
+            waOpen=!waOpen;
+            const popup=document.getElementById('waPopup'),btn=document.getElementById('waBtn');
+            popup.classList.toggle('open',waOpen);
+            if(waOpen){const dot=btn.querySelector('.wa-notif-dot');if(dot)dot.style.display='none';if(!msgsSent){msgsSent=true;runChat();}}
+        };
+        window.waReply=function(text){window.open('https://wa.me/233256120940?text='+encodeURIComponent(text),'_blank');};
+    })();
+</script>
+</body>
+</html>
